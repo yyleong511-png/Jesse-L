@@ -365,6 +365,13 @@
     font-family:'JetBrains Mono', monospace; font-size:12.5px; line-height:1.7; color:var(--muted);
     max-width:52ch;
   }
+  .beyond-link{
+    display:inline-block; margin-top:10px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:0.04em;
+    color:var(--crimson); border-bottom:1px solid transparent;
+  }
+  .beyond-link:hover{border-color:var(--crimson);}
+  .beyond-link + .beyond-link{margin-left:16px;}
 
   /* ---------- CONTACT ---------- */
   .contact{
@@ -432,7 +439,7 @@
     .credit-grid{grid-template-columns:1fr; gap:26px;}
     .credit-grid .frame{max-width:340px;}
     .beyond-item{grid-template-columns:40px 1fr; }
-    .beyond-item p{grid-column:2/3; margin-top:2px;}
+    .beyond-item .beyond-desc{grid-column:2/3; margin-top:2px;}
     .contact-links{grid-template-columns:1fr;}
     .contact-link:hover{padding-left:0;}
   }
@@ -487,10 +494,12 @@
       </div>
       <div class="stat-card reveal">
         <div class="stat-card-label">Measurements</div>
-        <div class="stat-row"><span class="k">Height</span><span class="v">168.5 cm</span></div>
-        <div class="stat-row"><span class="k">Bust</span><span class="v">79 cm</span></div>
-        <div class="stat-row"><span class="k">Waist</span><span class="v">67 cm</span></div>
-        <div class="stat-row"><span class="k">Hips</span><span class="v">95 cm</span></div>
+        <div class="stat-row"><span class="k">Height</span><span class="v">170 cm</span></div>
+        <div class="stat-row"><span class="k">Weight</span><span class="v">53 kg</span></div>
+        <div class="stat-row"><span class="k">Bust</span><span class="v">81 cm</span></div>
+        <div class="stat-row"><span class="k">Waist</span><span class="v">66 cm</span></div>
+        <div class="stat-row"><span class="k">Hips</span><span class="v">89.5 cm</span></div>
+        <div class="stat-row"><span class="k">Shoulder</span><span class="v">87 cm</span></div>
         <div class="stat-row"><span class="k">Shoe</span><span class="v">EU 39 / US 8&ndash;8.5</span></div>
         <div class="stat-row" style="border-bottom:none;"><span class="k">Based in</span><span class="v">Kuala Lumpur, Malaysia</span></div>
       </div>
@@ -762,28 +771,44 @@
   <div class="beyond-list reveal">
     <div class="beyond-item">
       <span class="idx mono">01</span>
-      <h3>Podcast</h3>
-      <p>Hosting and producing conversations &mdash; unscripted, ongoing.</p>
+      <h3>Podcast &mdash; Two Chatters</h3>
+      <div class="beyond-desc">
+        <p>People from completely different walks of life still carry their own stories worth telling &mdash; that idea sits behind Two Chatters. It actually started alone: talking out loud to an empty room, the way some people think best out loud rather than in silence. Recording it on a phone turned that habit into something worth keeping, and finding a like-minded friend to sit across the mic turned it into a proper, ongoing project &mdash; still, at its core, just a fun thing to make together.</p>
+        <a class="beyond-link" href="https://www.instagram.com/2.chatterpodcast" target="_blank" rel="noopener">Instagram &rarr;</a>
+      </div>
     </div>
     <div class="beyond-item">
       <span class="idx mono">02</span>
-      <h3>Makeup Artistry</h3>
-      <p>On-set and personal makeup work, from clean beauty to full editorial looks.</p>
+      <h3>Makeup Enthusiasm &mdash; Channel 51</h3>
+      <div class="beyond-desc">
+        <p>Self-taught under the name Channel 51. First picked up makeup at 15 through cosplay, and everything since has been built through hands-on practice &mdash; trial and error, tutorials, and knowledge traded back and forth with other makeup artists along the way. Currently developing Kira Project, an upcoming bespoke makeover concept in the spirit of a fine portrait studio &mdash; part styled photography, part full-look transformation, offered as a paid service.</p>
+        <a class="beyond-link" href="https://www.instagram.com/__channel51" target="_blank" rel="noopener">Instagram &rarr;</a>
+      </div>
     </div>
     <div class="beyond-item">
       <span class="idx mono">03</span>
       <h3>Talent Scouting</h3>
-      <p>Spotting and connecting new faces within the local industry.</p>
+      <div class="beyond-desc">
+        <p>Handles talent scouting for Elena Blair, sourcing models, makeup artists, creative directors and stylists for the team. Currently wears several of those hats herself within it &mdash; model, makeup artist, stylist, photographer, and social media manager.</p>
+        <a class="beyond-link" href="https://www.instagram.com/elenablair.official" target="_blank" rel="noopener">Instagram &rarr;</a>
+      </div>
     </div>
     <div class="beyond-item">
       <span class="idx mono">04</span>
       <h3>Art Practice</h3>
-      <p>A personal, ongoing body of visual work outside of client jobs.</p>
+      <div class="beyond-desc">
+        <p>Studied Fine Art at Dasein Academy, with a working knowledge of art history and formal art systems. Keeps an ongoing personal practice alongside client work, spanning photography, performance and live art.</p>
+        <a class="beyond-link" href="https://www.instagram.com/__jclcore" target="_blank" rel="noopener">Instagram &rarr;</a>
+      </div>
     </div>
     <div class="beyond-item">
       <span class="idx mono">05</span>
       <h3>Social Media</h3>
-      <p>Running and growing content channels &mdash; her own, and others'.</p>
+      <div class="beyond-desc">
+        <p>Currently building out the personal page of a Rubik's-cube enthusiast from the ground up, shaping the account's content and voice across a run of experimental, fast-cut edits that push past the usual social-media format &mdash; visible across both the Instagram page and its TikTok companion.</p>
+        <a class="beyond-link" href="https://www.instagram.com/cublism22" target="_blank" rel="noopener">Instagram &rarr;</a>
+        <a class="beyond-link" href="https://www.tiktok.com/@cublism22" target="_blank" rel="noopener">TikTok &rarr;</a>
+      </div>
     </div>
   </div>
 </section>
