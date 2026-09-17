@@ -1,0 +1,115 @@
+{
+  "site": {
+    "footerCopyright": "© Jesse L — Model / Talent",
+    "footerLocation": "Kuala Lumpur, Malaysia"
+  },
+  "home": {
+    "eyebrow": "N°01 — KUALA LUMPUR, MY",
+    "nameLine1": "JESSE",
+    "nameLine2": "L.",
+    "roleBefore": "Model",
+    "roleAfter": "Talent — Editorial & Commercial",
+    "captionLine1": "Jesse Leong (aka JCL, Jesse L.)",
+    "captionLine2": "born 2004, based in Kuala Lumpur, Malaysia"
+  },
+  "about": {
+    "eyebrow": "N°02 / About",
+    "bio1Rest": "esse is a Kuala Lumpur–based model and talent working across editorial, campaign and beauty. Comfortable in front of a beauty macro lens or sunk into a full look on a coloured set, she moves between soft, expressive close-ups and character-driven campaign work with the same ease.",
+    "bio2": "Off set, she's usually behind a microphone, a brush, or a camera of her own — a multi-hyphenate approach to the industry that keeps every shoot feeling considered rather than routine.",
+    "stats": [
+      { "label": "Height", "value": "170 cm" },
+      { "label": "Weight", "value": "53 kg" },
+      { "label": "Bust", "value": "81 cm" },
+      { "label": "Waist", "value": "66 cm" },
+      { "label": "Hips", "value": "89.5 cm" },
+      { "label": "Shoulder", "value": "87 cm" },
+      { "label": "Shoe", "value": "EU 39 / US 8–8.5" },
+      { "label": "Based in", "value": "Kuala Lumpur, Malaysia" }
+    ]
+  },
+  "work": {
+    "eyebrow": "N°03 / Portfolio",
+    "heading": "Selected\u00A0Work",
+    "intro": "Seven series pulled from studio, editorial and campaign sessions — comp-card lookbook, sport-red editorial, street style, quiet portraiture, an Elena Blair editorial, bridal beauty, and product campaigns.",
+    "series": [
+      { "title": "Sport / Commercial / Editorial", "desc": "Angel Studio · Photograph by Thomas" },
+      { "title": "Street / Commercial", "desc": "Angel Studio · Photograph by Thomas" },
+      { "title": "Portraits", "desc": "Photographer: Kim Mun." },
+      { "title": "Editorial", "desc": "Elena Blair · Photographer: Earl Kiu." },
+      { "title": "Bridal Makeup", "desc": "Makeup by Csarelle" },
+      { "title": "Product Shooting", "desc": "by Noisy Visual." }
+    ],
+    "klfw": {
+      "eyebrow": "Runway",
+      "title": "KLFW × L’Oréal, 2026",
+      "text": "Runway modelling for L’Oréal at Kuala Lumpur Fashion Week."
+    },
+    "ismc": {
+      "eyebrow": "Competition",
+      "title": "ISMC, 2026",
+      "text": "2026 contestant, Kuala Lumpur."
+    }
+  },
+  "more": {
+    "eyebrow": "N°04 / Beyond the Lens",
+    "heading": "Also\u00A0Working\u00A0On",
+    "intro": "Modelling is one thread — the rest of the practice runs alongside it.",
+    "items": [
+      {
+        "idx": "01",
+        "title": "Podcast — Two Chatters",
+        "text": "People from completely different walks of life still carry their own stories worth telling — that idea sits behind Two Chatters. It actually started alone: talking out loud to an empty room, the way some people think best out loud rather than in silence. Recording it on a phone turned that habit into something worth keeping, and finding a like-minded friend to sit across the mic turned it into a proper, ongoing project — still, at its core, just a fun thing to make together.",
+        "link1Label": "Instagram →",
+        "link1Href": "https://www.instagram.com/2.chatterpodcast",
+        "link2Label": "",
+        "link2Href": ""
+      },
+      {
+        "idx": "02",
+        "title": "Makeup Enthusiasm",
+        "text": "Self-taught in makeup artistry. First picked up makeup at 15 through cosplay, and everything since has been built through hands-on practice — trial and error, tutorials, and knowledge traded back and forth with other makeup artists along the way. Currently developing Kira Project, an upcoming bespoke makeover concept in the spirit of a fine portrait studio — part styled photography, part full-look transformation, offered as a paid service.",
+        "link1Label": "View Kira Project on Instagram →",
+        "link1Href": "https://www.instagram.com/kiraproject__?igsi=MXZpZHIyd3g4cTlpdA==",
+        "link2Label": "",
+        "link2Href": ""
+      },
+      {
+        "idx": "03",
+        "title": "Talent Scouting",
+        "text": "Handles talent scouting for Elena Blair, sourcing models, makeup artists, producers and stylists for the team. Currently wears several of those hats herself within it — model, makeup artist, stylist, photographer, and social media manager.",
+        "link1Label": "Instagram →",
+        "link1Href": "https://www.instagram.com/elenablair.official",
+        "link2Label": "",
+        "link2Href": ""
+      },
+      {
+        "idx": "04",
+        "title": "Art Practice",
+        "text": "Studied Fine Art at Dasein Academy, with a working knowledge of art history and formal art systems. Keeps an ongoing personal practice alongside client work, spanning photography, performance and live art.",
+        "link1Label": "Instagram →",
+        "link1Href": "https://www.instagram.com/__jclcore",
+        "link2Label": "",
+        "link2Href": ""
+      },
+      {
+        "idx": "05",
+        "title": "Social Media",
+        "text": "Currently building out the personal page of a Rubik's-cube enthusiast from the ground up, shaping the account's content and voice across a run of experimental, fast-cut edits that push past the usual social-media format — visible across both the Instagram page and its TikTok companion.",
+        "link1Label": "Instagram →",
+        "link1Href": "https://www.instagram.com/cublism22",
+        "link2Label": "TikTok →",
+        "link2Href": "https://www.tiktok.com/@cublism22"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "N°05 / Contact",
+    "headingLine1": "Let's Make",
+    "headingLine2": "Something.",
+    "links": [
+      { "label": "Instagram", "value": "@jcl_511", "href": "https://www.instagram.com/jcl_511" },
+      { "label": "Email", "value": "itsjesse@elenablair.com", "href": "mailto:itsjesse@elenablair.com" },
+      { "label": "WhatsApp", "value": "+60 18–396 3953", "href": "https://wa.me/60183963953" }
+    ]
+  }
+}
