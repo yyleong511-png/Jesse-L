@@ -776,30 +776,31 @@ nav a.active{border-color:var(--paper);}
 
 <section class="contact" id="contact">
   <div class="reveal">
-    <div class="eyebrow">N&deg;05 / Contact</div>
-    <h2>Let's Make<br>Something.</h2>
+    <div class="eyebrow" data-f="contact.eyebrow">N&deg;05 / Contact</div>
+    <h2><span data-f="contact.headingLine1">Let's Make</span><br><span data-f="contact.headingLine2">Something.</span></h2>
   </div>
   <div class="contact-links reveal">
-    <a class="contact-link" href="https://www.instagram.com/jcl_511" target="_blank" rel="noopener">
+    <a class="contact-link" data-f-href="contact.links.0.href" href="https://www.instagram.com/jcl_511" target="_blank" rel="noopener">
       <span class="k">Instagram</span>
-      <span class="v">@jcl_511</span>
+      <span class="v" data-f="contact.links.0.value">@jcl_511</span>
     </a>
-    <a class="contact-link" href="mailto:itsjesse@elenablair.com">
+    <a class="contact-link" data-f-href="contact.links.1.href" href="mailto:itsjesse@elenablair.com">
       <span class="k">Email</span>
-      <span class="v">itsjesse@elenablair.com</span>
+      <span class="v" data-f="contact.links.1.value">itsjesse@elenablair.com</span>
     </a>
-    <a class="contact-link" href="https://wa.me/60183963953" target="_blank" rel="noopener">
+    <a class="contact-link" data-f-href="contact.links.2.href" href="https://wa.me/60183963953" target="_blank" rel="noopener">
       <span class="k">WhatsApp</span>
-      <span class="v">+60 18&ndash;396 3953</span>
+      <span class="v" data-f="contact.links.2.value">+60 18&ndash;396 3953</span>
     </a>
   </div>
 </section>
 
 <footer>
-  <span>&copy; Jesse L &mdash; Model / Talent</span>
-  <span>Kuala Lumpur, Malaysia</span>
+  <span data-f="site.footerCopyright">&copy; Jesse L &mdash; Model / Talent</span>
+  <span data-f="site.footerLocation">Kuala Lumpur, Malaysia</span>
 </footer>
 
+<script src="content.js"></script>
 <script>
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {

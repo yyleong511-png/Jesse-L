@@ -778,7 +778,7 @@ nav a.active{border-color:var(--paper);}
 
 <section id="about">
   <div class="reveal">
-    <div class="eyebrow">N&deg;02 / About</div>
+    <div class="eyebrow" data-f="about.eyebrow">N&deg;02 / About</div>
   </div>
   <div class="about-grid" style="margin-top:24px;">
     <div class="about-portrait reveal">
@@ -788,8 +788,8 @@ nav a.active{border-color:var(--paper);}
     </div>
     <div>
       <div class="about-copy reveal">
-        <p><span class="drop">J</span>esse is a Kuala Lumpur&ndash;based model and talent working across editorial, campaign and beauty. Comfortable in front of a beauty macro lens or sunk into a full look on a coloured set, she moves between soft, expressive close-ups and character-driven campaign work with the same ease.</p>
-        <p>Off set, she's usually behind a microphone, a brush, or a camera of her own &mdash; a multi-hyphenate approach to the industry that keeps every shoot feeling considered rather than routine.</p>
+        <p><span class="drop">J</span><span data-f="about.bio1Rest">esse is a Kuala Lumpur&ndash;based model and talent working across editorial, campaign and beauty. Comfortable in front of a beauty macro lens or sunk into a full look on a coloured set, she moves between soft, expressive close-ups and character-driven campaign work with the same ease.</span></p>
+        <p data-f="about.bio2">Off set, she's usually behind a microphone, a brush, or a camera of her own &mdash; a multi-hyphenate approach to the industry that keeps every shoot feeling considered rather than routine.</p>
       </div>
             <div class="series reveal series-compact">
           <div class="series-head">
@@ -820,24 +820,25 @@ nav a.active{border-color:var(--paper);}
         </div>
     <div class="stat-card reveal">
         <div class="stat-card-label">Measurements</div>
-        <div class="stat-row"><span class="k">Height</span><span class="v">170 cm</span></div>
-        <div class="stat-row"><span class="k">Weight</span><span class="v">53 kg</span></div>
-        <div class="stat-row"><span class="k">Bust</span><span class="v">81 cm</span></div>
-        <div class="stat-row"><span class="k">Waist</span><span class="v">66 cm</span></div>
-        <div class="stat-row"><span class="k">Hips</span><span class="v">89.5 cm</span></div>
-        <div class="stat-row"><span class="k">Shoulder</span><span class="v">87 cm</span></div>
-        <div class="stat-row"><span class="k">Shoe</span><span class="v">EU 39 / US 8&ndash;8.5</span></div>
-        <div class="stat-row" style="border-bottom:none;"><span class="k">Based in</span><span class="v">Kuala Lumpur, Malaysia</span></div>
+        <div class="stat-row"><span class="k">Height</span><span class="v" data-f="about.stats.0.value">170 cm</span></div>
+        <div class="stat-row"><span class="k">Weight</span><span class="v" data-f="about.stats.1.value">53 kg</span></div>
+        <div class="stat-row"><span class="k">Bust</span><span class="v" data-f="about.stats.2.value">81 cm</span></div>
+        <div class="stat-row"><span class="k">Waist</span><span class="v" data-f="about.stats.3.value">66 cm</span></div>
+        <div class="stat-row"><span class="k">Hips</span><span class="v" data-f="about.stats.4.value">89.5 cm</span></div>
+        <div class="stat-row"><span class="k">Shoulder</span><span class="v" data-f="about.stats.5.value">87 cm</span></div>
+        <div class="stat-row"><span class="k">Shoe</span><span class="v" data-f="about.stats.6.value">EU 39 / US 8&ndash;8.5</span></div>
+        <div class="stat-row" style="border-bottom:none;"><span class="k">Based in</span><span class="v" data-f="about.stats.7.value">Kuala Lumpur, Malaysia</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>&copy; Jesse L &mdash; Model / Talent</span>
-  <span>Kuala Lumpur, Malaysia</span>
+  <span data-f="site.footerCopyright">&copy; Jesse L &mdash; Model / Talent</span>
+  <span data-f="site.footerLocation">Kuala Lumpur, Malaysia</span>
 </footer>
 
+<script src="content.js"></script>
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
