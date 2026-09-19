@@ -17,27 +17,69 @@
     "bio1Rest": "esse is a Kuala Lumpur–based model and talent working across editorial, campaign and beauty. Comfortable in front of a beauty macro lens or sunk into a full look on a coloured set, she moves between soft, expressive close-ups and character-driven campaign work with the same ease.",
     "bio2": "Off set, she's usually behind a microphone, a brush, or a camera of her own — a multi-hyphenate approach to the industry that keeps every shoot feeling considered rather than routine.",
     "stats": [
-      { "label": "Height", "value": "170 cm" },
-      { "label": "Weight", "value": "53 kg" },
-      { "label": "Bust", "value": "81 cm" },
-      { "label": "Waist", "value": "66 cm" },
-      { "label": "Hips", "value": "89.5 cm" },
-      { "label": "Shoulder", "value": "87 cm" },
-      { "label": "Shoe", "value": "EU 39 / US 8–8.5" },
-      { "label": "Based in", "value": "Kuala Lumpur, Malaysia" }
+      {
+        "label": "Height",
+        "value": "170 cm"
+      },
+      {
+        "label": "Weight",
+        "value": "53 kg"
+      },
+      {
+        "label": "Bust",
+        "value": "32 inch"
+      },
+      {
+        "label": "Waist",
+        "value": "24 inch"
+      },
+      {
+        "label": "Hips",
+        "value": "35 inch"
+      },
+      {
+        "label": "Shoulder",
+        "value": "87 cm"
+      },
+      {
+        "label": "Shoe",
+        "value": "EU 39 / US 8–8.5"
+      },
+      {
+        "label": "Based in",
+        "value": "Kuala Lumpur, Malaysia"
+      }
     ]
   },
   "work": {
     "eyebrow": "N°03 / Portfolio",
-    "heading": "Selected\u00A0Work",
+    "heading": "Selected Work",
     "intro": "Seven series pulled from studio, editorial and campaign sessions — comp-card lookbook, sport-red editorial, street style, quiet portraiture, an Elena Blair editorial, bridal beauty, and product campaigns.",
     "series": [
-      { "title": "Sport / Commercial / Editorial", "desc": "Angel Studio · Photograph by Thomas" },
-      { "title": "Street / Commercial", "desc": "Angel Studio · Photograph by Thomas" },
-      { "title": "Portraits", "desc": "Photographer: Kim Mun." },
-      { "title": "Editorial", "desc": "Elena Blair · Photographer: Earl Kiu." },
-      { "title": "Bridal Makeup", "desc": "Makeup by Csarelle" },
-      { "title": "Product Shooting", "desc": "by Noisy Visual." }
+      {
+        "title": "Sport / Commercial / Editorial",
+        "desc": "Angel Studio · Photograph by Thomas"
+      },
+      {
+        "title": "Street / Commercial",
+        "desc": "Angel Studio · Photograph by Thomas"
+      },
+      {
+        "title": "Portraits",
+        "desc": "Photographer: Kim Mun."
+      },
+      {
+        "title": "Editorial",
+        "desc": "Elena Blair · Photographer: Earl Kiu."
+      },
+      {
+        "title": "Bridal Makeup",
+        "desc": "Makeup by Csarelle"
+      },
+      {
+        "title": "Product Shooting",
+        "desc": "by Noisy Visual."
+      }
     ],
     "klfw": {
       "eyebrow": "Runway",
@@ -52,7 +94,7 @@
   },
   "more": {
     "eyebrow": "N°04 / Beyond the Lens",
-    "heading": "Also\u00A0Working\u00A0On",
+    "heading": "Also Working On",
     "intro": "Modelling is one thread — the rest of the practice runs alongside it.",
     "items": [
       {
@@ -107,9 +149,21 @@
     "headingLine1": "Let's Make",
     "headingLine2": "Something.",
     "links": [
-      { "label": "Instagram", "value": "@jcl_511", "href": "https://www.instagram.com/jcl_511" },
-      { "label": "Email", "value": "itsjesse@elenablair.com", "href": "mailto:itsjesse@elenablair.com" },
-      { "label": "WhatsApp", "value": "+60 18–396 3953", "href": "https://wa.me/60183963953" }
+      {
+        "label": "Instagram",
+        "value": "@jcl_511",
+        "href": "https://www.instagram.com/jcl_511"
+      },
+      {
+        "label": "Email",
+        "value": "itsjesse@elenablair.com",
+        "href": "mailto:itsjesse@elenablair.com"
+      },
+      {
+        "label": "WhatsApp",
+        "value": "+60 18–396 3953",
+        "href": "https://wa.me/60183963953"
+      }
     ]
   }
 }
