@@ -62,6 +62,11 @@
   }
   #publishBtn:disabled{opacity:0.4; cursor:default;}
   #publishBtn.dirty{box-shadow:0 0 0 2px rgba(168,69,44,0.4);}
+  #lockOutBtn{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.06em;
+    background:transparent; color:var(--muted); border:1px solid var(--line-strong);
+    padding:7px 10px; cursor:pointer; white-space:nowrap;
+  }
 
   main{max-width:640px; margin:0 auto; padding:20px 18px 40px;}
 
@@ -75,10 +80,10 @@
   .dot.err{background:var(--bad);}
   .statusbar a{color:var(--muted);}
 
-  /* connect screen */
-  #connect{max-width:420px; margin:40px auto; padding:0 18px;}
-  #connect h1{font-size:26px; font-weight:500; margin:0 0 6px;}
-  #connect p{color:var(--muted); font-size:14px; line-height:1.6; margin:0 0 22px;}
+  /* gate screen (setup + unlock share this) */
+  #gate{max-width:420px; margin:40px auto; padding:0 18px;}
+  #gate h1{font-size:26px; font-weight:500; margin:0 0 6px;}
+  #gate p.lead{color:var(--muted); font-size:14px; line-height:1.6; margin:0 0 22px;}
   label{display:block; font-family:'JetBrains Mono', monospace; font-size:10px;
     letter-spacing:0.12em; text-transform:uppercase; color:var(--stone); margin:16px 0 6px;}
   input[type=text], input[type=password], textarea{
@@ -88,8 +93,7 @@
   }
   input:focus, textarea:focus{outline:none; border-color:var(--crimson);}
   textarea{font-family:'Newsreader', serif; font-size:15px; line-height:1.5; resize:vertical; min-height:70px;}
-  .checkrow{display:flex; align-items:center; gap:8px; margin:16px 0;}
-  .checkrow label{margin:0; text-transform:none; letter-spacing:0; font-size:13px; color:var(--muted);}
+  #unlockInput{letter-spacing:0.15em; font-size:18px;}
   .btn-primary{
     width:100%; font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em;
     text-transform:uppercase; background:var(--crimson); color:var(--ink);
@@ -105,7 +109,7 @@
     font-size:12.5px; line-height:1.6; color:var(--muted); background:var(--paper-raised);
     border-left:2px solid var(--crimson); padding:12px 14px; margin-top:24px;
   }
-  .connect-error{color:var(--bad); font-size:12.5px; margin-top:10px; font-family:'JetBrains Mono', monospace; display:none;}
+  .gate-error{color:var(--bad); font-size:12.5px; margin-top:10px; font-family:'JetBrains Mono', monospace; display:none;}
 
   /* editor sections */
   details{border-bottom:1px solid var(--line); padding:16px 0;}
@@ -155,38 +159,65 @@
 </head>
 <body>
 
-<div id="connect">
-  <h1>Site Editor</h1>
-  <p>A private panel for editing the text and links on jesseleong.com. It saves straight to the GitHub repo that runs the site &mdash; no separate database.</p>
+<div id="gate">
 
-  <label for="tOwner">GitHub username / org</label>
-  <input type="text" id="tOwner" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. jesseleong">
+  <!-- ===== UNLOCK: shown when an encrypted vault already exists on this device ===== -->
+  <div id="unlockView" class="hidden">
+    <h1>Enter password</h1>
+    <p class="lead">Enter your password to unlock the editor on this device.</p>
 
-  <label for="tRepo">Repository name</label>
-  <input type="text" id="tRepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. jesseleong.com">
+    <label for="unlockInput">Password</label>
+    <input type="password" id="unlockInput" autocomplete="off" spellcheck="false" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;">
 
-  <label for="tBranch">Branch</label>
-  <input type="text" id="tBranch" autocomplete="off" autocapitalize="off" spellcheck="false" value="main">
+    <div class="gate-error" id="unlockError"></div>
 
-  <label for="tToken">GitHub personal access token</label>
-  <input type="password" id="tToken" autocomplete="off" spellcheck="false" placeholder="ghp_&hellip; or github_pat_&hellip;">
+    <button class="btn-primary" id="unlockBtn">Unlock</button>
+    <button class="btn-ghost" id="unlockForgot" type="button">Forgot password? Reset this device</button>
 
-  <div class="checkrow">
-    <input type="checkbox" id="tRemember" checked>
-    <label for="tRemember">Remember on this device</label>
+    <div class="notice">
+      Your password never leaves this device and is never sent anywhere. It decrypts your GitHub token, which is stored here in encrypted form. If you forget it, resetting means re-entering your GitHub token once.
+    </div>
   </div>
 
-  <button class="btn-primary" id="connectBtn">Connect</button>
-  <div class="connect-error" id="connectError"></div>
+  <!-- ===== SETUP: shown the first time, or after a reset ===== -->
+  <div id="setupView" class="hidden">
+    <h1>Set up Site Editor</h1>
+    <p class="lead">A private panel for editing the text and links on jesseleong.com. It saves straight to the GitHub repo that runs the site &mdash; no separate database.</p>
 
-  <div class="notice">
-    <strong>This page has no password of its own.</strong> Anyone with the link can open it, but they can't read or change anything without your GitHub token. Keep this URL off your public nav, and create a token scoped to just this one repo (Settings &rarr; Developer settings &rarr; Fine-grained tokens &rarr; Contents: Read and write) so it can't touch anything else on your account.
+    <label for="sOwner">GitHub username / org</label>
+    <input type="text" id="sOwner" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. jesseleong">
+
+    <label for="sRepo">Repository name</label>
+    <input type="text" id="sRepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. jesseleong.com">
+
+    <label for="sBranch">Branch</label>
+    <input type="text" id="sBranch" autocomplete="off" autocapitalize="off" spellcheck="false" value="main">
+
+    <label for="sToken">GitHub personal access token</label>
+    <input type="password" id="sToken" autocomplete="off" spellcheck="false" placeholder="ghp_&hellip; or github_pat_&hellip;">
+
+    <label for="sPass">Choose a password for this device</label>
+    <input type="password" id="sPass" autocomplete="off" spellcheck="false" placeholder="At least 6 characters">
+
+    <label for="sPass2">Confirm password</label>
+    <input type="password" id="sPass2" autocomplete="off" spellcheck="false" placeholder="Type it again">
+
+    <button class="btn-primary" id="setupBtn">Save &amp; connect</button>
+    <div class="gate-error" id="setupError"></div>
+
+    <div class="notice">
+      Your token is encrypted with this password and stored only on this device &mdash; it's never sent anywhere except directly to GitHub's API. From now on you'll unlock with just the password; you won't need to re-enter the token unless you reset this device. Create a token scoped to just this one repo (GitHub Settings &rarr; Developer settings &rarr; Fine-grained tokens &rarr; Contents: Read and write) so it can't touch anything else on your account.
+    </div>
   </div>
+
 </div>
 
 <header id="appHeader" class="hidden">
   <div class="brand">Site Editor<small id="repoLabel"></small></div>
-  <button id="publishBtn" disabled>Publish</button>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <button id="lockOutBtn" title="Lock">Lock</button>
+    <button id="publishBtn" disabled>Publish</button>
+  </div>
 </header>
 <div class="statusbar hidden" id="statusbar">
   <span class="dot" id="statusDot"></span>

@@ -1,7 +1,7 @@
 // Caches only the app shell so the editor opens instantly / offline.
 // It never caches content.json or GitHub API responses — those must
 // always be fetched fresh so you're never editing stale data.
-var CACHE = 'jl-admin-shell-v1';
+var CACHE = 'jl-admin-shell-v3';
 var SHELL = [
   './',
   './index.html',
