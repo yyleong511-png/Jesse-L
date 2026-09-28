@@ -8,7 +8,7 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   own at `work.html#<slug>` (hash routing in `site.js`).
 - **Newest series first.** A newly added series always goes to the top: first
   cover in the slider and first `<article class="story">`. Everything else
-  shifts down one. Angel Studio is currently the oldest, so it is last.
+  shifts down one. Angel Studio is currently the oldest, so it is last; Gabe & Jesse 2026/08 (N°06) is the newest.
 - Numbers count up from the oldest: Angel Studio is `N°01`, the newest series
   (first cover) has the highest number. After adding or reordering, renumber
   the kickers on both the covers and the stories, and re-alternate
