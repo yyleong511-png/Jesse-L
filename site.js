@@ -30,23 +30,66 @@
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('ready'); }); });
     if (video) {
+      var anim = hero.querySelector('.hero-anim');
+      var usingAnim = false;
+
+      // Some browsers (Instagram / Facebook in-app browsers, iPhone Low Power Mode)
+      // refuse to autoplay video. Then we switch to an animated image of the same
+      // film, which always plays and loops on its own.
+      var useAnim = function () {
+        if (usingAnim || !anim) return;
+        usingAnim = true;
+        anim.querySelectorAll('source').forEach(function (s) { s.setAttribute('srcset', s.getAttribute('data-srcset')); });
+        var img = anim.querySelector('img');
+        img.setAttribute('src', img.getAttribute('data-src'));
+        anim.hidden = false;
+        hero.classList.add('is-anim');
+        try { video.pause(); video.removeAttribute('src'); video.load(); } catch (e) {}
+      };
+
+      var tryPlay = function () {
+        if (usingAnim) return;
+        video.muted = true; video.defaultMuted = true; video.playsInline = true;
+        var q;
+        try { q = video.play(); } catch (e) { useAnim(); return; }
+        if (q && q.catch) q.catch(function () { useAnim(); });
+      };
+
       // Portrait screens get the upright film, landscape screens the 16:9 version
       var wideMQ = window.matchMedia('(min-aspect-ratio: 1/1)');
       var pick = function () {
+        if (usingAnim) return;
         var k = wideMQ.matches ? 'wide' : 'tall';
         var src = video.getAttribute('data-src-' + k);
         if (video.getAttribute('src') === src) return;
         video.setAttribute('poster', video.getAttribute('data-poster-' + k));
         video.setAttribute('src', src);
         video.load();
-        if (!reduce) { var q = video.play(); if (q && q.catch) q.catch(function () {}); }
+        if (!reduce) tryPlay();
       };
       pick();
       if (wideMQ.addEventListener) wideMQ.addEventListener('change', pick); else if (wideMQ.addListener) wideMQ.addListener(pick);
+
       if (reduce) { video.removeAttribute('autoplay'); video.pause(); }
       else {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () { /* autoplay blocked (e.g. Low Power Mode) — poster stays */ });
+        tryPlay();
+        video.addEventListener('canplay', function () { if (video.paused) tryPlay(); });
+        video.addEventListener('error', function () { if (video.getAttribute('src')) useAnim(); });
+        // Safety net: if nothing is moving after a few seconds, use the animated image
+        var check = function (wait) {
+          setTimeout(function () {
+            if (usingAnim) return;
+            var moving = !video.paused && video.currentTime > 0;
+            if (moving) return;
+            if (video.readyState >= 2 || wait >= 6000) useAnim(); else check(wait + 1500);
+          }, wait === 0 ? 2500 : 1500);
+        };
+        check(0);
+        // Any first touch also nudges playback
+        var nudge = function () { tryPlay(); window.removeEventListener('touchstart', nudge); window.removeEventListener('click', nudge); };
+        window.addEventListener('touchstart', nudge, { passive: true });
+        window.addEventListener('click', nudge);
+        document.addEventListener('visibilitychange', function () { if (!document.hidden && !usingAnim && video.paused) tryPlay(); });
       }
     }
   }
