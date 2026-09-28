@@ -18,7 +18,12 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
   12-column grid (`plate-pair`, `plate-solo`, `plate-wide` for landscape).
   One feature can hold several chapters (see Angel Studio: Series I/II/III).
-- KLFW × L'Oréal and ISMC stay below the slider (`.credits`).
+- The index has three titled groups, each its own cover slider: **Photo
+  Series**, **Runway**, **Competition** (`.group-head` + `.covers`). A new
+  runway show or competition goes first in its own slider, same as a photo
+  series. Their stories are `.story--extra` (kicker shows the year, not N°),
+  placed after the photo series; N° numbering applies to photo series only.
+  Update the count in each `.group-head` label.
 - Titles and credits are also in `content.json` (`work.series.N`), which
   overrides the HTML text at runtime; update both.
 

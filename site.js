@@ -103,57 +103,66 @@
   markLong();
   document.addEventListener('content:applied', markLong);
 
-  // Work page: a slider of series covers; each series opens on its own at #slug
-  var covers = document.querySelector('.covers');
-  if (covers) {
+  // Work page: one cover slider per group (photo series, runway, competition);
+  // each cover opens its story on its own at #slug
+  var sliders = Array.prototype.slice.call(document.querySelectorAll('.covers'));
+  if (sliders.length) {
     var root = document.documentElement;
-    var track = covers.querySelector('.cover-track');
-    var slides = Array.prototype.slice.call(track.children);
     var stories = Array.prototype.slice.call(document.querySelectorAll('.story[id]'));
-    var prevBtn = covers.querySelector('[data-cover-nav="prev"]');
-    var nextBtn = covers.querySelector('[data-cover-nav="next"]');
-    var count = covers.querySelector('.cover-count');
-    var bar = covers.querySelector('.cover-progress span');
     var nextLink = document.querySelector('.series-next');
     var pad = function (n) { return String(n).padStart(2, '0'); };
 
-    // Each cover reuses its series' lead photo, so the page carries no duplicate images
-    slides.forEach(function (slide) {
-      var link = slide.querySelector('[data-cover]');
-      var story = document.getElementById(link.getAttribute('data-cover'));
-      var img = story && story.querySelector('.story-lead img');
-      if (img) { var c = img.cloneNode(); c.removeAttribute('style'); link.appendChild(c); }
-    });
+    var makeSlider = function (covers) {
+      var track = covers.querySelector('.cover-track');
+      var slides = Array.prototype.slice.call(track.children);
+      var prevBtn = covers.querySelector('[data-cover-nav="prev"]');
+      var nextBtn = covers.querySelector('[data-cover-nav="next"]');
+      var count = covers.querySelector('.cover-count');
+      var bar = covers.querySelector('.cover-progress span');
+      covers.classList.toggle('is-single', slides.length < 2);
 
-    // covers are narrower than the track (the next one peeks in), so step by cover + gap
-    var step = function () { return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth; };
-    var current = function () { return Math.round(track.scrollLeft / (step() || 1)); };
-    var goTo = function (i, smooth) {
-      i = Math.min(slides.length - 1, Math.max(0, i));
-      track.scrollTo({ left: i * step(), behavior: smooth ? 'smooth' : 'auto' });
-    };
-    var sync = function () {
-      var i = Math.min(slides.length - 1, Math.max(0, current()));
-      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) i = slides.length - 1;
-      slides.forEach(function (s, n) { s.classList.toggle('is-current', n === i); });
-      count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
-      bar.style.width = ((i + 1) / slides.length * 100) + '%';
-      prevBtn.disabled = i === 0;
-      nextBtn.disabled = i === slides.length - 1;
-    };
-    prevBtn.addEventListener('click', function () { goTo(current() - 1, true); });
-    slides.forEach(function (s, n) {
-      s.addEventListener('click', function (e) {
-        if (!s.classList.contains('is-current')) { e.preventDefault(); goTo(n, true); }
+      // Each cover reuses its story's lead photo, so the page carries no duplicate images
+      slides.forEach(function (slide) {
+        var link = slide.querySelector('[data-cover]');
+        var story = document.getElementById(link.getAttribute('data-cover'));
+        var img = story && story.querySelector('.story-lead img');
+        if (img) { var c = img.cloneNode(); c.removeAttribute('style'); link.appendChild(c); }
       });
-    });
-    nextBtn.addEventListener('click', function () { goTo(current() + 1, true); });
-    var t;
-    track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
-    window.addEventListener('resize', sync);
+
+      // covers are narrower than the track (the next one peeks in), so step by cover + gap
+      var step = function () { return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth; };
+      var current = function () { return Math.round(track.scrollLeft / (step() || 1)); };
+      var goTo = function (i, smooth) {
+        i = Math.min(slides.length - 1, Math.max(0, i));
+        track.scrollTo({ left: i * step(), behavior: smooth ? 'smooth' : 'auto' });
+      };
+      var sync = function () {
+        var i = Math.min(slides.length - 1, Math.max(0, current()));
+        if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) i = slides.length - 1;
+        slides.forEach(function (s, n) { s.classList.toggle('is-current', n === i); });
+        count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+        bar.style.width = ((i + 1) / slides.length * 100) + '%';
+        prevBtn.disabled = i === 0;
+        nextBtn.disabled = i === slides.length - 1;
+      };
+      prevBtn.addEventListener('click', function () { goTo(current() - 1, true); });
+      nextBtn.addEventListener('click', function () { goTo(current() + 1, true); });
+      slides.forEach(function (s, n) {
+        s.addEventListener('click', function (e) {
+          if (!s.classList.contains('is-current')) { e.preventDefault(); goTo(n, true); }
+        });
+      });
+      var t;
+      track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+      var ids = slides.map(function (s) { return s.querySelector('[data-cover]').getAttribute('data-cover'); });
+      return { el: covers, ids: ids, goTo: goTo, sync: sync };
+    };
+    var groups = sliders.map(makeSlider);
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var lastOpen = -1;
+    var lastId = null;
     var route = function () {
       var id = decodeURIComponent(location.hash.slice(1));
       var open = -1;
@@ -163,7 +172,7 @@
         if (on) open = i;
       });
       root.classList.toggle('viewing', open >= 0);
-      // films only play while their series is open (and not for reduced motion)
+      // films only play while their story is open (and not for reduced motion)
       stories.forEach(function (s, i) {
         s.querySelectorAll('video').forEach(function (v) {
           if (i === open && !reduceMotion) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); }
@@ -174,13 +183,22 @@
         var next = stories[(open + 1) % stories.length];
         nextLink.href = '#' + next.id;
         nextLink.textContent = 'Next: ' + next.querySelector('.series-title').textContent + ' →';
-        lastOpen = open;
+        lastId = id;
         window.scrollTo(0, 0);
-      } else if (lastOpen >= 0) {
-        // back on the index: land on the cover of the series just viewed
-        requestAnimationFrame(function () { goTo(lastOpen, false); sync(); window.scrollTo(0, 0); });
+      } else if (lastId) {
+        // back on the index: land on the cover just viewed, in its own slider
+        var from = lastId;
+        requestAnimationFrame(function () {
+          groups.forEach(function (g) {
+            var n = g.ids.indexOf(from);
+            if (n < 0) return;
+            g.goTo(n, false); g.sync();
+            var top = g.el.getBoundingClientRect().top + window.scrollY - 140;
+            window.scrollTo(0, g === groups[0] ? 0 : top);
+          });
+        });
       }
-      sync();
+      groups.forEach(function (g) { g.sync(); });
     };
     window.addEventListener('hashchange', route);
     route();
