@@ -27,6 +27,14 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - Embedded as base64 JPEG in the HTML (site convention).
 - Resize to 1600px tall before embedding; never crop.
 
+## Films
+
+- A series can open with a short film (`.story-reel`, see Restraint): muted
+  loop that plays only while its series is open; clicking goes to the
+  original Instagram post.
+- Files live next to the pages: `<name>.mp4` (H.264, no audio, faststart)
+  plus `<name>.webm` (VP9) fallback and a `<name>.jpg` poster.
+
 ## Publishing
 
 - Build changes on a branch, send screenshots, and merge to `main` only after

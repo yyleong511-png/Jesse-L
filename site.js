@@ -152,6 +152,7 @@
     track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
     window.addEventListener('resize', sync);
 
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var lastOpen = -1;
     var route = function () {
       var id = decodeURIComponent(location.hash.slice(1));
@@ -162,6 +163,13 @@
         if (on) open = i;
       });
       root.classList.toggle('viewing', open >= 0);
+      // films only play while their series is open (and not for reduced motion)
+      stories.forEach(function (s, i) {
+        s.querySelectorAll('video').forEach(function (v) {
+          if (i === open && !reduceMotion) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); }
+          else v.pause();
+        });
+      });
       if (open >= 0) {
         var next = stories[(open + 1) % stories.length];
         nextLink.href = '#' + next.id;
