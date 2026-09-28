@@ -22,6 +22,6 @@
 
   fetch('content.json', { cache: 'no-store' })
     .then(function (res) { return res.ok ? res.json() : null; })
-    .then(function (data) { if (data) apply(data); })
+    .then(function (data) { if (data) { apply(data); document.dispatchEvent(new Event('content:applied')); } })
     .catch(function () { /* keep the built-in text if content.json can't load */ });
 })();

@@ -94,6 +94,15 @@
     }
   }
 
+  // Sentence-length series titles get a smaller size (run after content.json fills them in)
+  var markLong = function () {
+    document.querySelectorAll('.series-title').forEach(function (t) {
+      t.classList.toggle('is-long', t.textContent.trim().length > 28);
+    });
+  };
+  markLong();
+  document.addEventListener('content:applied', markLong);
+
   // Work page: a slider of series covers; each series opens on its own at #slug
   var covers = document.querySelector('.covers');
   if (covers) {
