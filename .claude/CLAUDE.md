@@ -9,8 +9,10 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - **Newest series first.** A newly added series always goes to the top: first
   cover in the slider and first `<article class="story">`. Everything else
   shifts down one. Angel Studio is currently the oldest, so it is last.
-- After reordering, renumber the `N°01`… kickers on both the covers and the
-  stories, and re-alternate `story--flip` (1st normal, 2nd flipped, …).
+- Numbers count up from the oldest: Angel Studio is `N°01`, the newest series
+  (first cover) has the highest number. After adding or reordering, renumber
+  the kickers on both the covers and the stories, and re-alternate
+  `story--flip` (1st story normal, 2nd flipped, …).
 - A cover has no image of its own: `site.js` copies the series' lead photo
   (`.story-lead img`) into it, so the lead photo *is* the cover.
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
