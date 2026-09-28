@@ -1,4 +1,4 @@
-/* site.js — shared behaviour: header state, scroll reveal, hero film, work flipbooks */
+/* site.js — shared behaviour: header state, scroll reveal, hero film */
 (function () {
   var header = document.querySelector('.site-header');
   var isHome = document.body.classList.contains('home');
@@ -94,35 +94,4 @@
     }
   }
 
-  // Work page flipbooks
-  document.querySelectorAll('.flipbook-wrap').forEach(function (wrap) {
-    var track = wrap.querySelector('.flipbook');
-    var pages = Array.prototype.slice.call(track.children);
-    var prev = wrap.querySelector('[data-flip="prev"]');
-    var next = wrap.querySelector('[data-flip="next"]');
-    var label = wrap.querySelector('.flip-count');
-    var bar = wrap.querySelector('.flip-progress span');
-    var total = pages.length;
-    if (!total) return;
-    var pad = function (n) { return String(n).padStart(2, '0'); };
-    var step = function () {
-      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
-      return pages[0].getBoundingClientRect().width + gap;
-    };
-    var sync = function () {
-      var max = track.scrollWidth - track.clientWidth;
-      var i = Math.min(total - 1, Math.max(0, Math.round(track.scrollLeft / step())));
-      if (track.scrollLeft >= max - 2) i = total - 1;
-      if (label) label.textContent = pad(i + 1) + ' / ' + pad(total);
-      if (bar) bar.style.width = ((i + 1) / total * 100) + '%';
-      if (prev) prev.disabled = track.scrollLeft <= 2;
-      if (next) next.disabled = track.scrollLeft >= max - 2;
-    };
-    prev && prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next && next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    var t;
-    track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
-  });
 })();
