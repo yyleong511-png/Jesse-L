@@ -26,6 +26,10 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 
 - Embedded as base64 JPEG in the HTML (site convention).
 - Resize to 1600px tall before embedding; never crop.
+- **No duplicates.** The owner may resend a photo already on the site. Before
+  adding, compare new photos against every photo on the page (downscaled
+  pixel similarity, then check by eye). A match replaces the existing copy in
+  place, keeping the higher-resolution file; never show the same shot twice.
 
 ## Films
 

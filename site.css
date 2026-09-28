@@ -349,7 +349,7 @@ em{font-style:italic;}
 }
 .reel-badge svg{width:11px; height:11px;}
 @media (hover:hover){ .story-reel:hover .reel-badge{background:rgba(18,16,14,.85);} }
-.reel-label{display:block; margin-top:10px;}
+.reel-label{display:block; margin-top:10px; font-size:13px; line-height:1.7; color:var(--ink-2);}
 
 .story-open{display:grid; grid-template-columns:var(--cols); column-gap:var(--cgap); align-items:end;}
 .story-lead{grid-column:1/7; grid-row:1;}
