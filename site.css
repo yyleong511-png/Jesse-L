@@ -313,6 +313,9 @@ em{font-style:italic;}
 .stat.wide{grid-column:1/-1;}
 .compcard{margin-top:clamp(80px,9vw,140px);}
 .comp-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,1.2vw,18px); margin-top:24px; align-items:end;}
+/* comp card: front (landscape) and back (portrait) shown at the same height */
+.comp-grid--card{grid-template-columns:1.5625fr 1fr; align-items:start;}
+.comp-grid--card img{width:100%; height:auto; display:block;}
 .comp-grid figcaption{position:absolute; left:10px; bottom:9px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:rgba(255,255,255,.85); text-shadow:0 1px 6px rgba(0,0,0,.4);}
 
 /* ==========================================================================
@@ -540,6 +543,7 @@ em{font-style:italic;}
   .about-portrait{position:relative; top:auto; max-width:520px;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .comp-grid--card{grid-template-columns:1fr;}
   .cover-track{--peek:30vw;}
   .cover{align-items:start;}
   .cover-media{grid-column:1/-1; height:auto; justify-content:flex-start;}
