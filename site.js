@@ -1,4 +1,4 @@
-/* site.js — shared behaviour: header state, scroll reveal, hero film */
+/* site.js — shared behaviour: header state, scroll reveal, hero film, work covers */
 (function () {
   var header = document.querySelector('.site-header');
   var isHome = document.body.classList.contains('home');
@@ -94,4 +94,68 @@
     }
   }
 
+  // Work page: a slider of series covers; each series opens on its own at #slug
+  var covers = document.querySelector('.covers');
+  if (covers) {
+    var root = document.documentElement;
+    var track = covers.querySelector('.cover-track');
+    var slides = Array.prototype.slice.call(track.children);
+    var stories = Array.prototype.slice.call(document.querySelectorAll('.story[id]'));
+    var prevBtn = covers.querySelector('[data-cover-nav="prev"]');
+    var nextBtn = covers.querySelector('[data-cover-nav="next"]');
+    var count = covers.querySelector('.cover-count');
+    var bar = covers.querySelector('.cover-progress span');
+    var nextLink = document.querySelector('.series-next');
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+
+    // Each cover reuses its series' lead photo, so the page carries no duplicate images
+    slides.forEach(function (slide) {
+      var link = slide.querySelector('[data-cover]');
+      var story = document.getElementById(link.getAttribute('data-cover'));
+      var img = story && story.querySelector('.story-lead img');
+      if (img) { var c = img.cloneNode(); c.removeAttribute('style'); link.appendChild(c); }
+    });
+
+    var current = function () { return Math.round(track.scrollLeft / (track.clientWidth || 1)); };
+    var goTo = function (i, smooth) {
+      track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+    };
+    var sync = function () {
+      var i = Math.min(slides.length - 1, Math.max(0, current()));
+      count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+      bar.style.width = ((i + 1) / slides.length * 100) + '%';
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === slides.length - 1;
+    };
+    prevBtn.addEventListener('click', function () { goTo(current() - 1, true); });
+    nextBtn.addEventListener('click', function () { goTo(current() + 1, true); });
+    var t;
+    track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
+    window.addEventListener('resize', sync);
+
+    var lastOpen = -1;
+    var route = function () {
+      var id = decodeURIComponent(location.hash.slice(1));
+      var open = -1;
+      stories.forEach(function (s, i) {
+        var on = s.id === id;
+        s.classList.toggle('is-open', on);
+        if (on) open = i;
+      });
+      root.classList.toggle('viewing', open >= 0);
+      if (open >= 0) {
+        var next = stories[(open + 1) % stories.length];
+        nextLink.href = '#' + next.id;
+        nextLink.textContent = 'Next: ' + next.querySelector('.series-title').textContent + ' →';
+        lastOpen = open;
+        window.scrollTo(0, 0);
+      } else if (lastOpen >= 0) {
+        // back on the index: land on the cover of the series just viewed
+        requestAnimationFrame(function () { goTo(lastOpen, false); sync(); window.scrollTo(0, 0); });
+      }
+      sync();
+    };
+    window.addEventListener('hashchange', route);
+    route();
+  }
 })();
