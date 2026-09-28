@@ -565,6 +565,14 @@ em{font-style:italic;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
+  /* phone: back of the card shows only its top quarter, fading out */
+  .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom,#000 35%,transparent);
+            mask-image:linear-gradient(to bottom,#000 35%,transparent);}
+  .comp-lock-panel{width:min(76%,290px); padding:18px 16px 16px;}
+  .comp-lock-icon{width:22px; height:22px;}
+  .comp-lock-text{margin-top:8px; font-size:17px;}
+  .comp-lock-link{margin-top:10px; font-size:10px;}
   .cover-track{--peek:30vw;}
   .cover{align-items:start;}
   .cover-media{grid-column:1/-1; height:auto; justify-content:flex-start;}
