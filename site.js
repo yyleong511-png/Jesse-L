@@ -116,18 +116,28 @@
       if (img) { var c = img.cloneNode(); c.removeAttribute('style'); link.appendChild(c); }
     });
 
-    var current = function () { return Math.round(track.scrollLeft / (track.clientWidth || 1)); };
+    // covers are narrower than the track (the next one peeks in), so step by cover + gap
+    var step = function () { return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth; };
+    var current = function () { return Math.round(track.scrollLeft / (step() || 1)); };
     var goTo = function (i, smooth) {
-      track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+      i = Math.min(slides.length - 1, Math.max(0, i));
+      track.scrollTo({ left: i * step(), behavior: smooth ? 'smooth' : 'auto' });
     };
     var sync = function () {
       var i = Math.min(slides.length - 1, Math.max(0, current()));
+      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) i = slides.length - 1;
+      slides.forEach(function (s, n) { s.classList.toggle('is-current', n === i); });
       count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
       bar.style.width = ((i + 1) / slides.length * 100) + '%';
       prevBtn.disabled = i === 0;
       nextBtn.disabled = i === slides.length - 1;
     };
     prevBtn.addEventListener('click', function () { goTo(current() - 1, true); });
+    slides.forEach(function (s, n) {
+      s.addEventListener('click', function (e) {
+        if (!s.classList.contains('is-current')) { e.preventDefault(); goTo(n, true); }
+      });
+    });
     nextBtn.addEventListener('click', function () { goTo(current() + 1, true); });
     var t;
     track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
