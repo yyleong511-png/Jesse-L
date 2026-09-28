@@ -275,13 +275,8 @@ em{font-style:italic;}
 /* ==========================================================================
    ABOUT
    ========================================================================== */
-.about-grid{
-  display:grid;
-  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-  gap:clamp(36px,7vw,120px);
-  align-items:start;
-}
-/* the J of "Jesse", huge, cut out of a photo collage */
+.about-grid{max-width:880px;}
+/* the J of "Jesse": a drop cap cut out of a photo collage, over the Kira Project star */
 .mask-j{
   display:inline-block;
   font-family:'Playfair Display',var(--serif); font-weight:900;
@@ -290,10 +285,13 @@ em{font-style:italic;}
   background:url("about-j.jpg") center 20% / cover no-repeat;
   -webkit-background-clip:text; background-clip:text;
 }
-.about-mark{position:sticky; top:calc(var(--header-h) + 32px); text-align:center;}
-.about-mark .mask-j{font-size:min(60vw,122vh); margin-top:-.02em;}
-/* desktop: the big J stands in the left column, so the lead drops its own J */
-.about-lead .drop{display:none;}
+.drop-star{position:relative; float:left; font-size:8em; line-height:.78; margin:.04em .14em -.06em .06em;}
+.drop-star::before{
+  content:""; position:absolute;
+  left:50%; top:50%; width:.8em; height:.8em; transform:translate(-50%,-50%);
+  background:url("about-star.png") center / contain no-repeat;
+}
+.drop-star .mask-j{position:relative; display:block;}
 .about-lead{
   font-family:var(--serif);
   font-size:clamp(26px,2.9vw,42px);
@@ -567,7 +565,6 @@ em{font-style:italic;}
    RESPONSIVE
    ========================================================================== */
 @media (max-width:1024px){
-  .about-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);}
   .stat-grid{grid-template-columns:1fr;}
 }
 
@@ -575,9 +572,6 @@ em{font-style:italic;}
   :root{--header-h:64px;}
   .page-head{grid-template-columns:1fr;}
   .page-intro{justify-self:start;}
-  .about-grid{grid-template-columns:1fr;}
-  .about-mark{display:none;}
-  .about-lead .drop.mask-j{display:inline-block; float:left; font-size:8em; margin:.04em .05em -.06em -.02em;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
