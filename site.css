@@ -285,10 +285,10 @@ em{font-style:italic;}
   background:url("about-j.jpg") center 20% / cover no-repeat;
   -webkit-background-clip:text; background-clip:text;
 }
-.drop-star{position:relative; float:left; font-size:8em; line-height:.78; margin:.04em .14em -.06em .06em;}
+.drop-star{position:relative; float:left; font-size:8em; line-height:.78; margin:.08em .22em .02em .16em;}
 .drop-star::before{
   content:""; position:absolute;
-  left:50%; top:50%; width:.8em; height:.8em; transform:translate(-50%,-50%);
+  left:50%; top:50%; width:1.02em; height:1.02em; transform:translate(-50%,-50%);
   background:url("about-star.png") center / contain no-repeat;
 }
 .drop-star .mask-j{position:relative; display:block;}
@@ -575,6 +575,7 @@ em{font-style:italic;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
+  .drop-star{font-size:6.6em; margin:.08em .16em 0 .1em;}
   /* phone: back of the card shows only its top quarter, fading out */
   .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
     -webkit-mask-image:linear-gradient(to bottom,#000 35%,transparent);
