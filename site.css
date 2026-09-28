@@ -348,6 +348,7 @@ em{font-style:italic;}
 }
 .series-credit{margin-top:clamp(18px,2vw,26px); font-size:13px; line-height:1.7; color:var(--ink-2); max-width:30ch; white-space:pre-line;}
 /* sentence-length titles (e.g. a pull quote) drop a size */
+.series-credit:empty{display:none;}
 .series-title.is-long{font-size:clamp(30px,3.1vw,50px); line-height:1.05;}
 
 .plate-row{display:grid; grid-template-columns:var(--cols); column-gap:var(--cgap); align-items:start; margin-top:clamp(56px,8vw,140px);}
