@@ -349,6 +349,12 @@ em{font-style:italic;}
 }
 .series-credit{margin-top:clamp(18px,2vw,26px); font-size:13px; line-height:1.7; color:var(--ink-2); max-width:30ch;}
 
+/* chapters inside one feature (e.g. several series by the same studio) */
+.chapter-open{margin-top:clamp(96px,12vw,200px);}
+.chapter-mark{display:flex; align-items:baseline; gap:16px; margin-top:clamp(28px,3vw,44px); padding-top:18px; border-top:1px solid var(--line);}
+.chapter-open .chapter-mark{margin-top:0;}
+.chapter-name{font-family:var(--serif); font-style:italic; font-size:clamp(26px,2.4vw,38px); line-height:1;}
+
 .plate-row{display:grid; grid-template-columns:var(--cols); column-gap:var(--cgap); align-items:start; margin-top:clamp(56px,8vw,140px);}
 .plate-pair .plate:nth-child(1){grid-column:2/6;}
 .plate-pair .plate:nth-child(2){grid-column:8/11; margin-top:var(--drop);}
