@@ -290,8 +290,10 @@ em{font-style:italic;}
   content:""; position:absolute;
   left:50%; top:50%; width:1.02em; height:1.02em; transform:translate(-50%,-50%);
   background:url("about-star.png") center / contain no-repeat;
+  opacity:.5;
 }
-.drop-star .mask-j{position:relative; display:block;}
+.drop-star .mask-j{position:relative; display:block;
+  filter:drop-shadow(0 0 .025em rgba(92,150,235,.75)) drop-shadow(0 0 .09em rgba(92,150,235,.45));}
 .about-lead{
   font-family:var(--serif);
   font-size:clamp(26px,2.9vw,42px);
