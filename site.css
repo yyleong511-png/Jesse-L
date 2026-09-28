@@ -281,7 +281,19 @@ em{font-style:italic;}
   gap:clamp(36px,7vw,120px);
   align-items:start;
 }
-.about-portrait{position:sticky; top:calc(var(--header-h) + 32px);}
+/* the J of "Jesse", huge, cut out of a photo collage */
+.mask-j{
+  display:inline-block;
+  font-family:'Playfair Display',var(--serif); font-weight:900;
+  line-height:.78; letter-spacing:0; padding:0 .02em;
+  color:transparent;
+  background:url("about-j.jpg") center 20% / cover no-repeat;
+  -webkit-background-clip:text; background-clip:text;
+}
+.about-mark{position:sticky; top:calc(var(--header-h) + 32px); text-align:center;}
+.about-mark .mask-j{font-size:min(60vw,122vh); margin-top:-.02em;}
+/* desktop: the big J stands in the left column, so the lead drops its own J */
+.about-lead .drop{display:none;}
 .about-lead{
   font-family:var(--serif);
   font-size:clamp(26px,2.9vw,42px);
@@ -564,7 +576,8 @@ em{font-style:italic;}
   .page-head{grid-template-columns:1fr;}
   .page-intro{justify-self:start;}
   .about-grid{grid-template-columns:1fr;}
-  .about-portrait{position:relative; top:auto; max-width:520px;}
+  .about-mark{display:none;}
+  .about-lead .drop.mask-j{display:inline-block; float:left; font-size:8em; margin:.04em .05em -.06em -.02em;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
