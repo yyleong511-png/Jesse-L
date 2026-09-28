@@ -569,10 +569,10 @@ em{font-style:italic;}
   .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
     -webkit-mask-image:linear-gradient(to bottom,#000 35%,transparent);
             mask-image:linear-gradient(to bottom,#000 35%,transparent);}
-  .comp-lock-panel{width:min(76%,290px); padding:18px 16px 16px;}
-  .comp-lock-icon{width:22px; height:22px;}
-  .comp-lock-text{margin-top:8px; font-size:17px;}
-  .comp-lock-link{margin-top:10px; font-size:10px;}
+  .comp-lock-panel{width:min(54%,200px); padding:12px 12px 11px;}
+  .comp-lock-icon{width:16px; height:16px;}
+  .comp-lock-text{margin-top:5px; font-size:14px; line-height:1.2;}
+  .comp-lock-link{margin-top:7px; font-size:9px; letter-spacing:.14em; text-underline-offset:4px;}
   .cover-track{--peek:30vw;}
   .cover{align-items:start;}
   .cover-media{grid-column:1/-1; height:auto; justify-content:flex-start;}
