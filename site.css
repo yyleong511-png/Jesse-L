@@ -394,11 +394,8 @@ em{font-style:italic;}
 @media (hover:hover){ .story-reel:hover .reel-badge{background:rgba(18,16,14,.85);} }
 .reel-label{display:block; margin-top:10px; font-size:13px; line-height:1.7; color:var(--ink-2);}
 
-.story-open{display:grid; grid-template-columns:var(--cols); column-gap:var(--cgap); align-items:end;}
-.story-lead{grid-column:1/7; grid-row:1;}
-.story-head{grid-column:8/12; grid-row:1; padding-bottom:clamp(24px,4vw,64px);}
-.story--flip .story-lead{grid-column:7/13;}
-.story--flip .story-head{grid-column:2/6;}
+.story-open{display:grid; grid-template-columns:var(--cols); column-gap:var(--cgap);}
+.story-head{grid-column:1/9;}
 
 .story-kicker{display:flex; align-items:center; gap:14px; margin-bottom:clamp(20px,2.4vw,34px);}
 .story-kicker .num{color:var(--ink);}
@@ -426,6 +423,10 @@ em{font-style:italic;}
 .plate-pair .plate:nth-child(2){grid-column:8/11; margin-top:var(--drop);}
 .plate-pair--b .plate:nth-child(1){grid-column:3/6; margin-top:var(--drop);}
 .plate-pair--b .plate:nth-child(2){grid-column:7/11;}
+/* the series cover opens the photo sequence, a size up from the other plates */
+.story-open + .plate-cover{margin-top:clamp(36px,4.4vw,64px);}
+.plate-cover .plate{grid-column:4/10;}
+.plate-cover--land .plate{grid-column:2/12;}
 .plate-solo .plate{grid-column:5/9;}
 .plate-solo--r .plate{grid-column:7/11;}
 .plate-wide .plate{grid-column:3/11;}
@@ -597,8 +598,8 @@ em{font-style:italic;}
   .cover-text{grid-column:1/-1; padding-top:20px;}
   .story-reel .reel-frame,.story-reel .reel-label{grid-column:1/-1;}
   .story-reel .reel-label{margin-top:10px;}
-  .story-lead,.story--flip .story-lead{grid-column:1/-1;}
-  .story-head,.story--flip .story-head{grid-column:1/-1; grid-row:2; padding:28px 0 0;}
+  .story-head{grid-column:1/-1;}
+  .plate-cover .plate,.plate-cover--land .plate{grid-column:1/-1;}
   .story{--drop:clamp(48px,14vw,110px);}
   .plate-pair .plate:nth-child(1),.plate-pair--b .plate:nth-child(1){grid-column:1/7;}
   .plate-pair .plate:nth-child(2),.plate-pair--b .plate:nth-child(2){grid-column:7/13;}
