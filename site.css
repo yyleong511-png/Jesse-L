@@ -416,6 +416,7 @@ em{font-style:italic;}
 /* series intro text: note, disclaimer (accent), credits list */
 .story-note{margin-top:18px; font-size:13px; line-height:1.7; color:var(--ink-2); max-width:44ch; white-space:pre-line;}
 .story-disclaimer{color:var(--accent);}
+.story-more{display:inline-block; margin-top:22px;}
 /* a named group of photos inside one series (e.g. Lipstick / Sunscreen) */
 .group-mark{display:flex; align-items:baseline; gap:16px; margin-top:clamp(80px,10vw,160px); padding-top:18px; border-top:1px solid var(--line);}
 .group-name{font-family:var(--serif); font-style:italic; font-size:clamp(28px,2.6vw,42px); line-height:1;}
