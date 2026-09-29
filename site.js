@@ -23,6 +23,10 @@
     els.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // In-app browsers (Instagram, Facebook, TikTok, LINE…) often refuse to autoplay
+  // video, so films there go straight to their animated image.
+  var inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\/|musical_ly|TikTok|Bytedance/i.test(navigator.userAgent || '');
+
   // Home film
   var hero = document.querySelector('.hero');
   if (hero) {
@@ -67,11 +71,11 @@
         video.load();
         if (!reduce) tryPlay();
       };
-      pick();
+      if (inApp) useAnim(); else pick();
       if (wideMQ.addEventListener) wideMQ.addEventListener('change', pick); else if (wideMQ.addListener) wideMQ.addListener(pick);
 
       if (reduce) { video.removeAttribute('autoplay'); video.pause(); }
-      else {
+      else if (!inApp) {
         tryPlay();
         video.addEventListener('canplay', function () { if (video.paused) tryPlay(); });
         video.addEventListener('error', function () { if (video.getAttribute('src')) useAnim(); });
@@ -161,6 +165,26 @@
     };
     var groups = sliders.map(makeSlider);
 
+    // A reel that can't autoplay (in-app browser, Low Power Mode, error, frozen)
+    // is swapped for its animated image, which always plays.
+    var reelToAnim = function (v) {
+      if (v.hidden) return;
+      var img = document.createElement('img');
+      img.src = v.getAttribute('data-anim'); img.alt = ''; img.className = 'reel-anim';
+      img.width = v.width; img.height = v.height;
+      try { v.pause(); } catch (e) {}
+      v.hidden = true;
+      v.parentNode.insertBefore(img, v);
+    };
+    var playReel = function (v) {
+      if (v.hidden || !v.getAttribute('data-anim')) { if (!v.hidden) { var p0 = v.play(); if (p0 && p0.catch) p0.catch(function () {}); } return; }
+      if (inApp) { reelToAnim(v); return; }
+      v.muted = true; v.playsInline = true;
+      var q; try { q = v.play(); } catch (e) { reelToAnim(v); return; }
+      if (q && q.catch) q.catch(function () { reelToAnim(v); });
+      v.addEventListener('error', function () { reelToAnim(v); }, { once: true });
+      setTimeout(function () { if (!v.hidden && (v.paused || v.currentTime === 0)) reelToAnim(v); }, 3500);
+    };
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var lastId = null;
     var route = function () {
@@ -175,8 +199,8 @@
       // films only play while their story is open (and not for reduced motion)
       stories.forEach(function (s, i) {
         s.querySelectorAll('video').forEach(function (v) {
-          if (i === open && !reduceMotion) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); }
-          else v.pause();
+          if (i === open && !reduceMotion) playReel(v);
+          else if (!v.hidden) v.pause();
         });
       });
       if (open >= 0) {

@@ -379,7 +379,7 @@ em{font-style:italic;}
 .story-reel .reel-frame{grid-column:1/9;}
 .story-reel .reel-label{grid-column:10/13; margin-top:0;}
 .reel-frame{position:relative; display:block; overflow:hidden; background:var(--night);}
-.reel-frame video{display:block; width:100%; height:auto;}
+.reel-frame video,.reel-frame .reel-anim{display:block; width:100%; height:auto;}
 .reel-badge{
   position:absolute; left:16px; bottom:16px;
   display:inline-flex; align-items:center; gap:8px;
