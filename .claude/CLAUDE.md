@@ -23,8 +23,8 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
   12-column grid (`plate-pair`, `plate-solo`, `plate-wide` for landscape).
   One feature can hold several chapters (see Angel Studio: Series I/II/III).
-- The index has three titled groups, each its own cover slider: **Photo
-  Series**, **Runway**, **Competition** (`.group-head` + `.covers`). A new
+- The index has three titled groups, each its own cover slider: **Print**
+  (photo series), **Runway**, **Competition** (`.group-head` + `.covers`). A new
   runway show or competition goes first in its own slider, same as a photo
   series. Their stories are `.story--extra` (kicker shows the year, not N°),
   placed after the photo series; N° numbering applies to photo series only.

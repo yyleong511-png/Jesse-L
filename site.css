@@ -524,7 +524,7 @@ em{font-style:italic;}
 .js .series-back{display:inline-block;}
 .js .series-nav{display:flex; justify-content:space-between; gap:24px; padding-top:32px; border-top:1px solid var(--line);}
 
-/* titled groups on the Work index: Photo Series, Runway, Competition */
+/* titled groups on the Work index: Print, Runway, Competition */
 .group-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding-bottom:14px; margin-bottom:clamp(20px,2.4vw,32px); border-bottom:1px solid var(--line);}
 .group-title{font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(28px,2.6vw,42px); line-height:1;}
 .covers + .group-head{margin-top:clamp(72px,9vw,140px);}

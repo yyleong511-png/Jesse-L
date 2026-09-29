@@ -208,7 +208,7 @@
   markLong();
   document.addEventListener('content:applied', markLong);
 
-  // Work page: one cover slider per group (photo series, runway, competition);
+  // Work page: one cover slider per group (print, runway, competition);
   // each cover opens its story on its own at #slug
   var sliders = Array.prototype.slice.call(document.querySelectorAll('.covers'));
   if (sliders.length) {
