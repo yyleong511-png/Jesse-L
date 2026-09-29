@@ -378,6 +378,13 @@ em{font-style:italic;}
 .plate figcaption{margin-top:10px; font-size:10px;}
 
 /* a short film at the top of a series; muted loop, click opens the original post */
+/* a moving image closing a series, fading into the page with its title */
+.motion-end{position:relative; margin:clamp(56px,8vw,140px) 0 0; overflow:hidden;}
+.motion-end img{display:block; width:100%; height:auto;}
+.motion-end::after{content:""; position:absolute; left:0; right:0; bottom:0; height:55%;
+  background:linear-gradient(to bottom, rgba(241,236,227,0), var(--bg) 92%); pointer-events:none;}
+.motion-end-caption{position:absolute; left:0; right:0; bottom:clamp(14px,2.4vw,36px); z-index:1; text-align:center;
+  font-family:var(--serif); font-size:clamp(24px,3.6vw,56px); line-height:1.05; letter-spacing:-.01em; color:var(--ink); padding:0 16px;}
 /* full-width bar linking a series to its film on Instagram */
 .film-cta{
   display:flex; align-items:center; gap:16px;
@@ -600,6 +607,8 @@ em{font-style:italic;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
+  .motion-end::after{height:38%;}
+  .motion-end-caption{font-size:19px; bottom:10px;}
   .drop-star{font-size:6.6em; margin:.12em .16em .08em .1em;}
   /* phone: back of the card shows only its top quarter, fading out */
   .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
