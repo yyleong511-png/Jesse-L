@@ -378,6 +378,19 @@ em{font-style:italic;}
 .plate figcaption{margin-top:10px; font-size:10px;}
 
 /* a short film at the top of a series; muted loop, click opens the original post */
+/* full-width bar linking a series to its film on Instagram */
+.film-cta{
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:clamp(40px,5vw,72px); padding:18px 22px;
+  background:var(--ink); color:var(--bg);
+  font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  transition:background-color .35s var(--ease);
+}
+.film-cta-icon{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; border:1px solid rgba(241,236,227,.4); flex:none;}
+.film-cta-icon svg{width:11px; height:11px; margin-left:2px;}
+.film-cta-text{flex:1;}
+.film-cta-arrow{font-size:15px; transition:transform .35s var(--ease);}
+@media (hover:hover){ .film-cta:hover{background:var(--accent);} .film-cta:hover .film-cta-arrow{transform:translate(3px,-3px);} }
 .story-reel{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:clamp(12px,2vw,32px); align-items:end; margin-bottom:clamp(56px,7vw,110px);}
 .story-reel .reel-frame{grid-column:1/9;}
 .story-reel .reel-label{grid-column:10/13; margin-top:0;}
