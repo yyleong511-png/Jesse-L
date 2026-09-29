@@ -29,12 +29,19 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   series. Their stories are `.story--extra` (kicker shows the year, not N°),
   placed after the photo series; N° numbering applies to photo series only.
   Update the count in each `.group-head` label.
+- Every series page ends with a WhatsApp CTA (`.series-contact`); `site.js`
+  fills in the message with the open series' title. `@handles` inside
+  `.series-credit` / `.story-note` are linked to Instagram by `site.js`, so
+  write them as plain text.
 - Titles and credits are also in `content.json` (`work.series.N`), which
   overrides the HTML text at runtime; update both.
 
 ## Photos
 
-- Embedded as base64 JPEG in the HTML (site convention).
+- Work photos are files in `images/work/<slug>-NN.jpg`, referenced with
+  `loading="lazy"` so only what's on screen downloads (the page used to embed
+  them as base64 and weighed 21MB). Add new photos the same way; never inline.
+  About/More/Home still embed a few images inline.
 - Resize to 1600px tall before embedding; never crop.
 - **No duplicates.** The owner may resend a photo already on the site. Before
   adding, compare new photos against every photo on the page (downscaled
@@ -48,6 +55,11 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   original Instagram post.
 - Files live next to the pages: `<name>.mp4` (H.264, no audio, faststart)
   plus `<name>.webm` (VP9) fallback and a `<name>.jpg` poster.
+
+## Sharing
+
+- Every page has Open Graph tags pointing at `og-image.jpg` (a frame of the
+  home film, 1200×630). New pages need the same block.
 
 ## Publishing
 

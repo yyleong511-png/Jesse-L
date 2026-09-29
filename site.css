@@ -503,6 +503,18 @@ em{font-style:italic;}
 .work-index .page-head{padding-bottom:clamp(20px,2.4vw,32px); margin-bottom:clamp(28px,3.4vw,52px);}
 .work-index .page-title{font-size:clamp(40px,4vw,64px);}
 .work-index .page-intro{font-size:13.5px; line-height:1.65; max-width:52ch;}
+/* end-of-series call to action */
+.series-contact{display:none;}
+.js .series-contact{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:14px 28px;
+  margin-top:clamp(64px,8vw,120px); padding:clamp(28px,3.4vw,44px) 0; border-top:1px solid var(--line);}
+.series-contact-q{font-family:var(--serif); font-size:clamp(26px,2.8vw,40px); line-height:1.1; color:var(--ink);}
+.series-contact-link{font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  padding:14px 20px; border:1px solid var(--accent); transition:background-color .3s var(--ease), color .3s var(--ease);}
+@media (hover:hover){ .series-contact-link:hover{background:var(--accent); color:var(--bg);} }
+.js .series-contact + .series-nav{border-top:0; padding-top:0;}
+/* @handles in credits link to Instagram */
+.ig-handle{color:inherit; text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px; transition:text-decoration-color .3s var(--ease), color .3s var(--ease);}
+@media (hover:hover){ .ig-handle:hover{color:var(--accent); text-decoration-color:currentColor;} }
 .series-back{display:none;}
 .series-nav{display:none;}
 .js .work-series{display:none;}

@@ -15,7 +15,7 @@
   "about": {
     "compLock": {
       "text": "Interested? Please message the talent directly.",
-      "link": "Click to contact"
+      "link": "Request comp card"
     },
     "eyebrow": "N°02 / About",
     "bio1Rest": "esse is a Kuala Lumpur–based model and talent working across editorial, campaign and beauty. Comfortable in front of a beauty macro lens or sunk into a full look on a coloured set, she moves between soft, expressive close-ups and character-driven campaign work with the same ease.",
@@ -23,31 +23,39 @@
     "stats": [
       {
         "label": "Height",
-        "value": "170 cm"
+        "value": "170 cm / 5′7″"
       },
       {
         "label": "Weight",
-        "value": "53 kg"
+        "value": "53 kg / 117 lb"
       },
       {
         "label": "Bust",
-        "value": "32 inch"
+        "value": "81 cm / 32 in"
       },
       {
         "label": "Waist",
-        "value": "24 inch"
+        "value": "61 cm / 24 in"
       },
       {
         "label": "Hips",
-        "value": "35 inch"
+        "value": "89 cm / 35 in"
       },
       {
         "label": "Shoulder",
-        "value": "87 cm"
+        "value": "87 cm / 34 in"
       },
       {
         "label": "Shoe",
         "value": "EU 39 / US 8–8.5"
+      },
+      {
+        "label": "Hair",
+        "value": "Dark Brown"
+      },
+      {
+        "label": "Eyes",
+        "value": "Black"
       },
       {
         "label": "Based in",

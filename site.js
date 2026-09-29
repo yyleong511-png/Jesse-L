@@ -61,6 +61,39 @@
     window.addEventListener('resize', fitDrops);
   }
 
+  // Instagram handles in credits become links (runs again after content.json
+  // refills the text, since that replaces the element's contents)
+  var linkHandles = function () {
+    var re = /(^|[\s(\/,])@([A-Za-z0-9_](?:[A-Za-z0-9_.]*[A-Za-z0-9_])?)/g;
+    document.querySelectorAll('.series-credit, .story-note, .about-body').forEach(function (el) {
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      var nodes = [];
+      while (walker.nextNode()) { if (!walker.currentNode.parentNode.closest('a')) nodes.push(walker.currentNode); }
+      nodes.forEach(function (node) {
+        var text = node.nodeValue;
+        if (text.indexOf('@') < 0) return;
+        var frag = document.createDocumentFragment(), last = 0, m;
+        re.lastIndex = 0;
+        while ((m = re.exec(text))) {
+          var start = m.index + m[1].length;
+          frag.appendChild(document.createTextNode(text.slice(last, start)));
+          var a = document.createElement('a');
+          a.className = 'ig-handle';
+          a.href = 'https://www.instagram.com/' + m[2] + '/';
+          a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = '@' + m[2];
+          frag.appendChild(a);
+          last = start + 1 + m[2].length;
+        }
+        if (!last) return;
+        frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      });
+    });
+  };
+  linkHandles();
+  document.addEventListener('content:applied', linkHandles);
+
   // Home film
   var hero = document.querySelector('.hero');
   if (hero) {
@@ -241,6 +274,12 @@
         var next = stories[(open + 1) % stories.length];
         nextLink.href = '#' + next.id;
         nextLink.textContent = 'Next: ' + next.querySelector('.series-title').textContent + ' →';
+        var cta = document.querySelector('.series-contact-link');
+        if (cta) {
+          var name = stories[open].querySelector('.series-title').textContent.trim();
+          cta.href = 'https://wa.me/' + cta.getAttribute('data-wa') + '?text=' +
+            encodeURIComponent('Hi Jesse, I saw your "' + name + '" work on your website and would love to discuss a collaboration.');
+        }
         lastId = id;
         window.scrollTo(0, 0);
       } else if (lastId) {
