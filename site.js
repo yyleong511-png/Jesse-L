@@ -107,15 +107,49 @@
       // Some browsers (Instagram / Facebook in-app browsers, iPhone Low Power Mode)
       // refuse to autoplay video. Then we switch to an animated image of the same
       // film, which always plays and loops on its own.
+      // The film as a sequence of HD frames drawn on a canvas: behaves like a
+      // GIF at a fraction of the size, plays in every browser, never flickers.
       var useAnim = function () {
         if (usingAnim || !anim) return;
         usingAnim = true;
-        anim.querySelectorAll('source').forEach(function (s) { s.setAttribute('srcset', s.getAttribute('data-srcset')); });
-        var img = anim.querySelector('img');
-        img.setAttribute('src', img.getAttribute('data-src'));
+        var wide = window.matchMedia('(min-aspect-ratio: 1/1)').matches;
+        var dir = anim.getAttribute(wide ? 'data-frames-wide' : 'data-frames-tall');
+        var n = parseInt(anim.getAttribute('data-frame-count'), 10);
+        var fps = parseInt(anim.getAttribute('data-fps'), 10) || 10;
+        var name = function (k) { return dir + String(k + 1).padStart(3, '0') + '.jpg'; };
+        var frames = [], ready = 0, i = 0, last = 0, playing = false;
+        var ctx = anim.getContext('2d');
+        var draw = function (im) {
+          if (anim.width !== im.naturalWidth) { anim.width = im.naturalWidth; anim.height = im.naturalHeight; }
+          ctx.drawImage(im, 0, 0);
+        };
         anim.hidden = false;
         hero.classList.add('is-anim');
         try { video.pause(); video.removeAttribute('src'); video.load(); } catch (e) {}
+        var tick = function (t) {
+          if (!document.hidden && t - last >= 1000 / fps) {
+            last = t;
+            var next = (i + 1) % n;
+            if (next < ready) { i = next; draw(frames[i]); }
+          }
+          requestAnimationFrame(tick);
+        };
+        // load in order (decoded before use) so playback starts before the last frame arrives
+        var load = function (k) {
+          if (k >= n) return;
+          var im = new Image();
+          var done = function () {
+            frames[k] = im;
+            ready = k + 1;
+            if (k === 0) draw(im);
+            if (!playing && ready >= Math.min(n, 20)) { playing = true; requestAnimationFrame(tick); }
+            load(k + 1);
+          };
+          im.onload = function () { if (im.decode) im.decode().then(done, done); else done(); };
+          im.onerror = function () { load(k + 1); };
+          im.src = name(k);
+        };
+        load(0);
       };
 
       var tryPlay = function () {

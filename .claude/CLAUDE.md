@@ -56,6 +56,11 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - Files live next to the pages: `<name>.mp4` (H.264, no audio, faststart)
   plus `<name>.webm` (VP9) fallback and a `<name>.jpg` poster.
 
+- Home film: `hero.mp4` / `hero-wide.mp4`. Where video can't autoplay
+  (Instagram/Facebook/TikTok in-app browsers, Low Power Mode, errors), `site.js`
+  plays `hero-frames/{tall,wide}/NNN.jpg` (10 fps) on a canvas instead, like a
+  GIF. A real HD GIF would be ~40MB, so don't use GIFs.
+
 ## Sharing
 
 - Every page has Open Graph tags pointing at `og-image.jpg` (a frame of the
