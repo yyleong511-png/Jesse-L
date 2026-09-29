@@ -280,22 +280,25 @@ em{font-style:italic;}
 .mask-j{
   display:inline-block;
   font-family:'Playfair Display',var(--serif); font-weight:900;
-  line-height:.78; letter-spacing:0;
+  line-height:1; letter-spacing:0;
   /* generous padding: WebKit (iPhone, Instagram browser) only paints the clipped
      photo inside the element's box, so the box must cover the whole glyph */
-  padding:.12em .08em .28em; margin:-.12em -.08em -.28em;
+  padding:.12em .08em .28em;
   color:transparent; -webkit-text-fill-color:transparent;
   background:url("about-j.jpg") center .1em / 100% auto repeat-y;
   -webkit-background-clip:text; background-clip:text;
 }
-.drop-star{position:relative; float:left; font-size:8em; line-height:.78; margin:.08em .22em .02em .16em;}
+/* site.js sizes this box to the J's actual ink (measured in the browser's own
+   font rendering) and places the letter inside it, so text wraps around the
+   visible J and never under it. The width/height here are only a fallback. */
+.drop-star{position:relative; float:left; font-size:8em; line-height:1; width:.62em; height:.74em; margin:.12em .22em .1em .16em;}
 .drop-star::before{
   content:""; position:absolute;
   left:50%; top:50%; width:1.02em; height:1.02em; transform:translate(-50%,-50%);
   background:url("about-star.png") center / contain no-repeat;
   opacity:.5;
 }
-.drop-star .mask-j{position:relative; display:block;
+.drop-star .mask-j{position:absolute; left:-.1em; top:-.3em; display:block;
   filter:drop-shadow(0 0 .025em rgba(92,150,235,.75)) drop-shadow(0 0 .09em rgba(92,150,235,.45));}
 .about-lead{
   font-family:var(--serif);
@@ -582,7 +585,7 @@ em{font-style:italic;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .comp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .comp-grid--card{grid-template-columns:1fr;}
-  .drop-star{font-size:6.6em; margin:.08em .16em 0 .1em;}
+  .drop-star{font-size:6.6em; margin:.12em .16em .08em .1em;}
   /* phone: back of the card shows only its top quarter, fading out */
   .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
     -webkit-mask-image:linear-gradient(to bottom,#000 35%,transparent);
