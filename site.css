@@ -280,9 +280,12 @@ em{font-style:italic;}
 .mask-j{
   display:inline-block;
   font-family:'Playfair Display',var(--serif); font-weight:900;
-  line-height:.78; letter-spacing:0; padding:0 .02em;
-  color:transparent;
-  background:url("about-j.jpg") center 20% / cover no-repeat;
+  line-height:.78; letter-spacing:0;
+  /* generous padding: WebKit (iPhone, Instagram browser) only paints the clipped
+     photo inside the element's box, so the box must cover the whole glyph */
+  padding:.12em .08em .28em; margin:-.12em -.08em -.28em;
+  color:transparent; -webkit-text-fill-color:transparent;
+  background:url("about-j.jpg") center .1em / 100% auto repeat-y;
   -webkit-background-clip:text; background-clip:text;
 }
 .drop-star{position:relative; float:left; font-size:8em; line-height:.78; margin:.08em .22em .02em .16em;}
