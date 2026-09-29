@@ -15,6 +15,11 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   `story--flip` (1st story normal, 2nd flipped, …).
 - A cover has no image of its own: `site.js` copies the series' lead photo
   (`.story-lead img`) into it, so the lead photo *is* the cover.
+- Inside a series the header is text only (kicker, title, credits); photos
+  follow in their own order, first row a size up (`.plate-row.plate-cover`,
+  `plate-cover--land` for landscape). The slider cover is whichever figure
+  carries `story-lead` — usually photo 01, but not always (Inti-messy: the
+  landscape shot is 01, the cover is 02).
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
   12-column grid (`plate-pair`, `plate-solo`, `plate-wide` for landscape).
   One feature can hold several chapters (see Angel Studio: Series I/II/III).
