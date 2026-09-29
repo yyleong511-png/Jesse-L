@@ -630,9 +630,10 @@ em{font-style:italic;}
   .comp-lock-text{margin-top:5px; font-size:14px; line-height:1.2;}
   .comp-lock-link{margin-top:7px; font-size:9px; letter-spacing:.14em; text-underline-offset:4px;}
   .cover-track{--peek:30vw;}
-  .cover{align-items:start;}
-  .cover-media{grid-column:1/-1; height:auto; justify-content:flex-start;}
-  .cover-media img{width:100%; max-height:none;}
+  .cover{align-items:start; align-content:start;}
+  /* every cover gets the same frame height so the text below lines up across slides */
+  .cover-media{grid-column:1/-1; height:auto; aspect-ratio:4/5; justify-content:flex-start; align-items:flex-end;}
+  .cover-media img{max-width:100%; max-height:100%; width:auto; height:auto;}
   .cover-text{grid-column:1/-1; padding-top:20px;}
   .story-reel .reel-frame,.story-reel .reel-label{grid-column:1/-1;}
   .story-reel .reel-label{margin-top:10px;}
