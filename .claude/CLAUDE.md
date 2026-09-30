@@ -8,7 +8,7 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   own at `work.html#<slug>` (hash routing in `site.js`).
 - **Newest series first.** A newly added series always goes to the top: first
   cover in the slider and first `<article class="story">`. Everything else
-  shifts down one. Angel Studio is currently the oldest, so it is last; Cora Berland (N°11) is the newest.
+  shifts down one. Angel Studio is currently the oldest, so it is last; by Eric Jude Photos (N°12) is the newest.
 - Numbers count up from the oldest: Angel Studio is `N°01`, the newest series
   (first cover) has the highest number. After adding or reordering, renumber
   the kickers on both the covers and the stories, and re-alternate
@@ -24,6 +24,9 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
   12-column grid (`plate-pair`, `plate-solo`, `plate-wide` for landscape).
   One feature can hold several chapters (see Angel Studio: Series I/II/III).
+  A series of several shoots (by Eric Jude Photos) gives each group a
+  `.group-mark` then a `.group-intro`: the photographer's words (`.group-words`,
+  ending "— Words by @handle") on the left, credits on the right.
 - The index has three titled groups, each its own cover slider: **Print**
   (photo series), **Runway**, **Competition** (`.group-head` + `.covers`). A new
   runway show or competition goes first in its own slider, same as a photo
