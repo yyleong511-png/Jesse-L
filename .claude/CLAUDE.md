@@ -8,7 +8,7 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   own at `work.html#<slug>` (hash routing in `site.js`).
 - **Newest series first.** A newly added series always goes to the top: first
   cover in the slider and first `<article class="story">`. Everything else
-  shifts down one. Angel Studio is currently the oldest, so it is last; Blossom by ET (N°10) is the newest.
+  shifts down one. Angel Studio is currently the oldest, so it is last; Cora Berland (N°11) is the newest.
 - Numbers count up from the oldest: Angel Studio is `N°01`, the newest series
   (first cover) has the highest number. After adding or reordering, renumber
   the kickers on both the covers and the stories, and re-alternate
@@ -42,7 +42,8 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   `loading="lazy"` so only what's on screen downloads (the page used to embed
   them as base64 and weighed 21MB). Add new photos the same way; never inline.
   About/More/Home still embed a few images inline.
-- Resize to 1600px tall before embedding; never crop.
+- Keep photos at their original resolution (the owner wants them HD); never crop
+  unless asked.
 - **No duplicates.** The owner may resend a photo already on the site. Before
   adding, compare new photos against every photo on the page (downscaled
   pixel similarity, then check by eye). A match replaces the existing copy in
