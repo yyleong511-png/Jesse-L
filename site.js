@@ -236,6 +236,8 @@
           // a series may give its cover a different crop (data-cover-src) than the photo inside
           var alt = img.getAttribute('data-cover-src');
           if (alt) { c.src = alt; c.removeAttribute('width'); c.removeAttribute('height'); c.removeAttribute('data-cover-src'); }
+          var cx = img.getAttribute('data-cover-x');
+          if (cx) c.style.setProperty('--cover-x', cx);
           link.appendChild(c);
         }
       });
