@@ -19,7 +19,8 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   follow in their own order, first row a size up (`.plate-row.plate-cover`,
   `plate-cover--land` for landscape). The slider cover is whichever figure
   carries `story-lead` — usually photo 01, but not always (Inti-messy: the
-  landscape shot is 01, the cover is 02).
+  landscape shot is 01, the cover is 02). A cover can also use its own crop via
+  `data-cover-src` on that img (Cora Berland: portrait crop of a landscape shot).
 - Each series is a Kinfolk-style feature: lead photo + title, then plates on a
   12-column grid (`plate-pair`, `plate-solo`, `plate-wide` for landscape).
   One feature can hold several chapters (see Angel Studio: Series I/II/III).

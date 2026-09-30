@@ -231,7 +231,13 @@
         var link = slide.querySelector('[data-cover]');
         var story = document.getElementById(link.getAttribute('data-cover'));
         var img = story && story.querySelector('.story-lead img');
-        if (img) { var c = img.cloneNode(); c.removeAttribute('style'); link.appendChild(c); }
+        if (img) {
+          var c = img.cloneNode(); c.removeAttribute('style');
+          // a series may give its cover a different crop (data-cover-src) than the photo inside
+          var alt = img.getAttribute('data-cover-src');
+          if (alt) { c.src = alt; c.removeAttribute('width'); c.removeAttribute('height'); c.removeAttribute('data-cover-src'); }
+          link.appendChild(c);
+        }
       });
 
       // covers are narrower than the track (the next one peeks in), so step by cover + gap
