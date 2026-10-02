@@ -27,40 +27,6 @@
   // video, so films there go straight to their animated image.
   var inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\/|musical_ly|TikTok|Bytedance/i.test(navigator.userAgent || '');
 
-  // About drop cap: size its float to the J's real ink so the text wraps
-  // around the visible letter. Fonts render with different metrics on each
-  // browser (the J sat lower on iPhone), so measure instead of guessing.
-  var fitDrops = function () {
-    document.querySelectorAll('.drop-star').forEach(function (box) {
-      var j = box.querySelector('.mask-j');
-      if (!j) return;
-      var cs = getComputedStyle(j);
-      var ctx = document.createElement('canvas').getContext('2d');
-      ctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
-      var m = ctx.measureText(j.textContent.trim());
-      if (!m || !('actualBoundingBoxAscent' in m)) return;
-      // where the baseline actually sits inside the J's box
-      var probe = document.createElement('span');
-      probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
-      j.appendChild(probe);
-      var baseline = probe.getBoundingClientRect().top - j.getBoundingClientRect().top;
-      j.removeChild(probe);
-      var padL = parseFloat(cs.paddingLeft) || 0;
-      var inkTop = baseline - m.actualBoundingBoxAscent;
-      var inkLeft = padL - m.actualBoundingBoxLeft;
-      box.style.width = (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) + 'px';
-      box.style.height = (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) + 'px';
-      j.style.left = (-inkLeft) + 'px';
-      j.style.top = (-inkTop) + 'px';
-    });
-  };
-  if (document.querySelector('.drop-star')) {
-    fitDrops();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDrops);
-    window.addEventListener('load', fitDrops);
-    window.addEventListener('resize', fitDrops);
-  }
-
   // Instagram handles in credits become links (runs again after content.json
   // refills the text, since that replaces the element's contents)
   var linkHandles = function () {
