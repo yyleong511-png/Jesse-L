@@ -28,7 +28,7 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   `.group-mark` then a `.group-intro`: the photographer's words (`.group-words`,
   ending "— Words by @handle") on the left, credits on the right.
 - The index has three titled groups, each its own cover slider: **Print**
-  (photo series), **Runway**, **Competition** (`.group-head` + `.covers`). A new
+  (photo series), **Runway**, **Competition**, **TVC/Content** (`.group-head` + `.covers`). A new
   runway show or competition goes first in its own slider, same as a photo
   series. Their stories are `.story--extra` (kicker shows the year, not N°),
   placed after the photo series; N° numbering applies to photo series only.
@@ -57,7 +57,7 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
 
 - A series can open with a short film (`.story-reel`, see Restraint): muted
   loop that plays only while its series is open; clicking goes to the
-  original Instagram post.
+  original Instagram post. A vertical film adds `story-reel--tall` (Swasense).
 - Files live next to the pages: `<name>.mp4` (H.264, no audio, faststart)
   plus `<name>.webm` (VP9) fallback and a `<name>.jpg` poster.
 

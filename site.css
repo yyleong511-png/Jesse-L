@@ -401,6 +401,9 @@ em{font-style:italic;}
 .story-reel{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:clamp(12px,2vw,32px); align-items:end; margin-bottom:clamp(56px,7vw,110px);}
 .story-reel .reel-frame{grid-column:1/9;}
 .story-reel .reel-label{grid-column:10/13; margin-top:0;}
+/* a vertical (9:16) film: narrower frame */
+.story-reel--tall .reel-frame{grid-column:1/5;}
+.story-reel--tall .reel-label{grid-column:6/10;}
 .reel-frame{position:relative; display:block; overflow:hidden; background:var(--night);}
 .reel-frame video,.reel-frame .reel-anim{display:block; width:100%; height:auto;}
 .reel-frame video[hidden]{display:none;}
