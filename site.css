@@ -618,6 +618,8 @@ em{font-style:italic;}
   .comp-grid--card{grid-template-columns:1fr;}
   .motion-end::after{height:38%;}
   .motion-end-caption{font-size:19px; bottom:10px;}
+  .plate-credit{display:block; margin:4px 0 0;}
+  .plate-credit::before{content:none;}
   .drop-j{font-size:6.6em; margin:.1em .16em .04em .02em;}
   /* phone: back of the card shows only its top quarter, fading out */
   .comp-grid--card .frame:nth-child(2){aspect-ratio:1080/340; overflow:hidden;
