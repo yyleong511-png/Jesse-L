@@ -31,7 +31,7 @@
   // refills the text, since that replaces the element's contents)
   var linkHandles = function () {
     var re = /(^|[\s(\/,])@([A-Za-z0-9_](?:[A-Za-z0-9_.]*[A-Za-z0-9_])?)/g;
-    document.querySelectorAll('.series-credit, .story-note, .about-body').forEach(function (el) {
+    document.querySelectorAll('.series-credit, .story-note, .about-body, .plate-credit').forEach(function (el) {
       var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
       var nodes = [];
       while (walker.nextNode()) { if (!walker.currentNode.parentNode.closest('a')) nodes.push(walker.currentNode); }

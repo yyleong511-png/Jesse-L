@@ -360,6 +360,9 @@ em{font-style:italic;}
 .plate{margin:0;}
 .plate .frame img{display:block;}
 .plate figcaption{margin-top:10px; font-size:10px;}
+/* a single photo's own credit, after its number (@handle linked by site.js) */
+.plate-credit{margin-left:14px; letter-spacing:.04em;}
+.plate-credit::before{content:"—"; margin-right:14px; opacity:.5;}
 
 /* a short film at the top of a series; muted loop, click opens the original post */
 /* a moving image closing a series, fading into the page with its title */
