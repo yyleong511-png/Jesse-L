@@ -174,7 +174,7 @@
   markLong();
   document.addEventListener('content:applied', markLong);
 
-  // Work page: one cover slider per group (print, runway, competition);
+  // Work page: one cover slider per group (selected, print, runway, competition, TVC);
   // each cover opens its story on its own at #slug
   var sliders = Array.prototype.slice.call(document.querySelectorAll('.covers'));
   if (sliders.length) {
@@ -185,7 +185,8 @@
 
     var makeSlider = function (covers) {
       var track = covers.querySelector('.cover-track');
-      var slides = Array.prototype.slice.call(track.children);
+      var all = Array.prototype.slice.call(track.children);
+      var slides = all;
       var prevBtn = covers.querySelector('[data-cover-nav="prev"]');
       var nextBtn = covers.querySelector('[data-cover-nav="next"]');
       var count = covers.querySelector('.cover-count');
@@ -193,7 +194,7 @@
       covers.classList.toggle('is-single', slides.length < 2);
 
       // Each cover reuses its story's lead photo, so the page carries no duplicate images
-      slides.forEach(function (slide) {
+      all.forEach(function (slide) {
         var link = slide.querySelector('[data-cover]');
         var story = document.getElementById(link.getAttribute('data-cover'));
         var img = story && story.querySelector('.story-lead img');
@@ -226,17 +227,36 @@
       };
       prevBtn.addEventListener('click', function () { goTo(current() - 1, true); });
       nextBtn.addEventListener('click', function () { goTo(current() + 1, true); });
-      slides.forEach(function (s, n) {
+      all.forEach(function (s) {
         s.addEventListener('click', function (e) {
-          if (!s.classList.contains('is-current')) { e.preventDefault(); goTo(n, true); }
+          if (!s.classList.contains('is-current')) { e.preventDefault(); goTo(slides.indexOf(s), true); }
         });
       });
+      // optional filter chips (Print): show only covers tagged with the chosen kind
+      var filter = covers.querySelector('.cover-filter');
+      if (filter) {
+        filter.addEventListener('click', function (e) {
+          var b = e.target.closest('button[data-filter]');
+          if (!b) return;
+          var k = b.getAttribute('data-filter');
+          filter.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          all.forEach(function (s) { s.hidden = k !== 'all' && (' ' + (s.getAttribute('data-tags') || '') + ' ').indexOf(' ' + k + ' ') < 0; });
+          slides = all.filter(function (s) { return !s.hidden; });
+          covers.classList.toggle('is-single', slides.length < 2);
+          goTo(0, false); sync();
+        });
+      }
       var t;
       track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
       window.addEventListener('resize', sync);
       sync();
-      var ids = slides.map(function (s) { return s.querySelector('[data-cover]').getAttribute('data-cover'); });
-      return { el: covers, ids: ids, goTo: goTo, sync: sync };
+      var ids = all.map(function (s) { return s.querySelector('[data-cover]').getAttribute('data-cover'); });
+      // position of a story among the covers currently shown (-1 if filtered out or absent)
+      var find = function (id) {
+        for (var n = 0; n < slides.length; n++) if (slides[n].querySelector('[data-cover]').getAttribute('data-cover') === id) return n;
+        return -1;
+      };
+      return { el: covers, ids: ids, goTo: goTo, sync: sync, find: find };
     };
     var groups = sliders.map(makeSlider);
 
@@ -295,7 +315,7 @@
         var from = lastId;
         requestAnimationFrame(function () {
           groups.forEach(function (g) {
-            var n = g.ids.indexOf(from);
+            var n = g.find(from);
             if (n < 0) return;
             g.goTo(n, false); g.sync();
             var top = g.el.getBoundingClientRect().top + window.scrollY - 140;

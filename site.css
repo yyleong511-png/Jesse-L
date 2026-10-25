@@ -304,6 +304,14 @@ em{font-style:italic;}
   border-bottom:1px solid var(--ink);
 }
 .stats{margin-top:clamp(56px,6vw,90px);}
+/* About: what she can be booked for, then who she has worked with */
+.about-avail{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 18px; margin-top:clamp(28px,3vw,40px); padding-top:16px; border-top:1px solid var(--line);}
+.about-avail-v{font-family:var(--serif); font-size:clamp(20px,2vw,26px); line-height:1.25; color:var(--ink);}
+.clients{margin-top:clamp(56px,6vw,90px);}
+.client{display:flex; justify-content:space-between; align-items:baseline; gap:18px; padding:14px 0; border-bottom:1px solid var(--line);}
+.client-name{font-family:var(--serif); font-size:22px; line-height:1.15;}
+.client-note{font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); text-align:right;}
+.more-body p + p{margin-top:16px;}
 .stat-grid{display:grid; grid-template-columns:1fr 1fr; column-gap:clamp(24px,3vw,48px);}
 .stat{
   display:flex; justify-content:space-between; align-items:baseline; gap:16px;
@@ -475,6 +483,14 @@ em{font-style:italic;}
   transition:opacity .6s var(--ease);
 }
 .js .cover:not(.is-current){opacity:.45;}
+/* Print filter chips */
+.cover-filter{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 clamp(18px,2vw,28px);}
+.cover-filter button{font:inherit; font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2);
+  background:transparent; border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer;
+  transition:background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);}
+.cover-filter button[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+@media (hover:hover){ .cover-filter button:hover{border-color:var(--ink);} }
+.cover[hidden]{display:none !important;}
 .cover-media{grid-column:1/8; display:flex; justify-content:center; align-items:center; height:clamp(360px,calc(100svh - var(--header-h) - 330px),760px); overflow:hidden;}
 .cover-media img{max-height:100%; max-width:100%; width:auto; height:auto; transition:transform 1.4s var(--ease);}
 @media (hover:hover){ .cover-media:hover img{transform:scale(1.03);} }
@@ -668,6 +684,9 @@ em{font-style:italic;}
   .page-title{font-size:clamp(52px,16vw,84px);}
   .stat-grid{grid-template-columns:1fr;}
   .stat .v{font-size:21px;}
+  .client{flex-direction:column; gap:4px;}
+  .client-note{text-align:left;}
+  .client-name{font-size:20px;}
   .plate-row{margin-top:48px;}
   .series-title{font-size:clamp(38px,12vw,56px);}
   .more-item{grid-template-columns:1fr; gap:14px;}

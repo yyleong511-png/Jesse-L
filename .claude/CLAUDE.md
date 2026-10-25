@@ -33,6 +33,11 @@ Static site served by GitHub Pages (custom domain in `CNAME`). No build step.
   series. Their stories are `.story--extra` (kicker shows the year, not N°),
   placed after the photo series; N° numbering applies to photo series only.
   Update the count in each `.group-head` label.
+- Above Print sits **Selected** (`.covers--selected`): 4 hand-picked covers that
+  open existing stories (no stories of their own). Change the picks by copying
+  covers in; they are not renumbered or counted.
+- Print covers carry `data-tags` (editorial / beauty / fashion / commercial) for
+  the filter chips (`.cover-filter`); tag every new Print cover.
 - Every series page ends with a WhatsApp CTA (`.series-contact`); `site.js`
   fills in the message with the open series' title. `@handles` inside
   `.series-credit` / `.story-note` are linked to Instagram by `site.js`, so
